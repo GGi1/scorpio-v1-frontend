@@ -9,7 +9,6 @@ class Login extends Component {
     this.state={
       email: '',
       password: '',
-      password_confirmation: '',
     }
   }
 
@@ -36,7 +35,7 @@ class Login extends Component {
           >
             <input
               className="form-item"
-              placeholder="email goes here..."
+              placeholder="Email"
               name="email"
               type="text"
               onChange={this.handleChange.bind(this)}
@@ -44,20 +43,13 @@ class Login extends Component {
             />
             <input
               className="form-item"
-              placeholder="Password goes here..."
+              placeholder="Password"
               name="password"
               type="password"
               onChange={this.handleChange.bind(this)}
               value={this.state.password}
             />
-            <input
-              className="form-item"
-              placeholder="Password confirmation"
-              name="password_confirmation"
-              type="password_confirmation"
-              onChange={this.handleChange.bind(this)}
-              value={this.state.password_confrimation}
-            />
+
             <input
               className="form-submit"
               value="SUBMIT"
