@@ -1,5 +1,10 @@
+
+
 .App {
   text-align: center;
+  color: #202020;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+
 }
 
 .App-logo {
@@ -7,6 +12,8 @@
   height: 60px;
 
 }
+
+
 
 .App-header {
   background-color: #202020;
@@ -24,11 +31,44 @@
   /* background-color: red; */
 }
 
+.record{
+  width: 150px;
+  height: 150px;
+  margin-bottom: 0px;
+  margin: 7px;
+  background-size: cover;
+  color: white;
+}
+
+.record2{
+  width: 250px;
+  height: 250px;
+  margin-bottom: 0px;
+  min-width: 250px;
+  background-size: cover;
+  color: white;
+}
 .scorpio{
   font-size: 28px;
 
 }
+.fullwidthflexright{
+  display: flex;
+  justify-content: flex-end;
+  /* background-color: red; */
+}
+.hamburger{
 
+}
+
+.mydrawer{
+  width: 800px;
+}
+
+.drawerPaper{
+  width: 800px;
+  background-color: red;
+}
 .since{
   font-size: 16px;
   color: #202020;
@@ -36,48 +76,212 @@
 
 
 .bigbox{
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   /* background-color: pink; */
   display: flex;
-  align-content:space-between;
-  /* justify-content:flex-end; */
+  /* align-content:space-between; */
+  justify-content:center;
 }
 
 .mainpage{
-  width: 100%;
-  height: 90vh;
+  /* width: 100%; */
+  /* height: 90vh; */
   display: flex;
   /* background-color: yellow;
   opacity: .2; */
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .order{
   /* width:5vw; */
-  min-width: 5vw;
-  max-width: 520px;
-  height: 90vh;
+  /* min-width: 2px; */
+  /* width: inherit; */
+  /* height: 90vh; */
+position: absolute;
   display:flex;
-  background-color: pink;
+  background-color: #f1d592;
 box-shadow: 10px 10px 40px grey;
-  /* opacity: .2; */
+/* height: 100%; */
+  opacity: .86;
+  max-width: 400px;
 }
 
+
+
+.title{
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 6px;
+
+}
+.artist{
+  font-size: 12px;
+  text-align: center;
+  padding-bottom: 6px;
+  margin: 8px;
+  border-bottom: 2px grey dotted;
+}
+.labelandnum{
+  color: grey;
+  font-size: 10px;
+  text-align: center;
+}
+.itemcard{
+  max-width: 170px;
+  margin: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.itemcard2{
+  min-width: 250px;
+  margin: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* .cartbutton{
+display: flex;
+justify-content: center;
+} */
+
+.cartbutton2{
+   margin-top: -20px;
+  background-color: white;
+  border: none;
+  /* opacity: .8; */
+
+/* display: flex;
+justify-content: center; */
+}
+
+.orderbutton{
+  position: fixed;
+  z-index: 100;
+  opacity: .8;
+  right: 0px;
+  top: 0px;
+  /* display: flex; */
+  /* justify-content:space-between;
+  flex-wrap: wrap; */
+  /* transform: rotate(270deg); */
+  /* display: flex; */
+  /* width: 900px;
+  height: 10px; */
+
+  /* margin-right: -126px;
+  margin-top: 50px;
+  position: right; */
+
+  /* justify-content: right; */
+  /* border-radius: 2px;
+}
+.ordertext{
+/* width: 80px; */
+/*
+  margin: 20px 0px 0px -30px;
+  z-index: 5; */
+}
+
+.banner{
+  display: flex;
+  justify-content: center;
+  border-top: .5px black solid;
+  border-bottom: .5px black dashed;
+  margin-bottom: 18px;
+  padding: 20px;
+  color: #222;
+  font-size: 25px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+}
 .inorder{
-  min-width: 400px;
+
+  /* width: 100%; */
+  /* min-width: 400px; */
+  /* margin-right: 0px; */
   /* width:20vw; */
-  height: 90vh;
-  display:flex;
+
+  /* display:flex; */
   /* background-color: red;
   opacity: .2; */
 }
 
 
 
+.ordertable{
+  /* max-width: 800px; */
+
+  /* background-color: green; */
+}
+
+.MuiTableCell-body-73 {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    padding-right: 0px;
+  }
+
+.titlecell{
+  width: 1600px;
+  padding-right: 0px;
+  font-size: 8px;
+  /* background-color: red; */
+  margin: none;
+  padding: none;
+  font-size: 0.4125rem;
+ }
+
+ .quantitycell{
+   width: 0px;
+   font-size: 8px;
+   /* padding: 0px 0px 0px 0px;
+   margin: 0px 0px 0px 0px; */
+   padding: 0px;
+   margin: 0px;
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .titlecell text {
+   font-size: 5px;
+ }
 
 
+ .slides {
+   position: relative;
+   .slick-prev, .slick-next {
+     position: absolute;
+     top: 50%;
+   }
+   .slick-prev {
+     left: 5%;
+   }
+   .slick-next {
+     right: 5%;
+   }
+ }
+
+ .fullwidthflex{
+   display: flex;
+   justify-content: center;
+ }
 
 
+ /* .MuiTableCell-root-8.MuiTableCell-body-10{
+   background-color: red;
+    font-size: 0.4125rem;
+ } */
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

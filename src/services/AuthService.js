@@ -1,4 +1,6 @@
 import decode from 'jwt-decode';
+
+
 export default class AuthService {
     constructor(domain) {
         this.domain = domain || 'http://localhost:3000' // We can pass in the backend server, or use a default for dev
