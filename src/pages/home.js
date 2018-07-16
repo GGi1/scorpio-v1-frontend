@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
+// import 'footable.js';
+import ReactDOM from 'react-dom'
+import $ from 'jquery';
+import jQuery from 'jquery';
+import tooltip from 'jquery';
+import 'footable';
 
 const BASE = 'http://localhost:3000';
 
@@ -43,6 +49,8 @@ class Home extends Component {
 
 
 
+
+
 toggleOrder(){
   let order
   let orderpage
@@ -56,6 +64,7 @@ toggleOrder(){
   }
   this.setState({order: order, orderpage: orderpage})
 }
+
 
 
 addToOrder(element){
