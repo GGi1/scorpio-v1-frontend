@@ -69,7 +69,7 @@ let myorder = []
       myorder = cart
       console.log(myorder);
     }
-    return fetch(BASE + '/vinyls')
+    return fetch(BASE + '/exclusives')
       .then((resp) => {
         return resp.json()
       })
@@ -261,7 +261,7 @@ SearchEvent(event){
         <div className = "banner">EXCLUSIVES
         </div>
 
-{/* 
+{/*
               IF I WANT TO HAVE A TABLE AND REMOVE CERTAIN COLUMNS AT CERTAIN SIZE WINDOWS/MEDIA: */}
                        {/* <th data-breakpoints="xs">Description</th>
                        <th data-breakpoints="xs sm">Quantity</th> */}

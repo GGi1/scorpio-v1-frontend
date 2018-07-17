@@ -58,7 +58,7 @@ let myorder = []
       myorder = cart
       console.log(myorder);
     }
-    return fetch(BASE + '/vinyls')
+    return fetch(BASE + '/exclusives')
       .then((resp) => {
         return resp.json()
       })
