@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
-import {Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
+import {TextField, Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
 import CustomPaginationActionsTable from '../components/Table.js';
 import TablePaginationActions from '../components/TablePaginationActions.js'
 import { withStyles } from '@material-ui/core/styles';
@@ -245,26 +245,27 @@ SearchEvent(event){
     return (
       <div>
 
+        <div className="top-search-box">
+        <TextField
+                id="search-field"
+                label="Search"
+                style={{color: 'white', width: '100%'}}
+                // className={classes.textField}
+                value={this.state.search}
+                onChange={this.SearchEvent.bind(this)}
+                margin="normal"
+              />
+              </div>
+        {/* <input type="text" placeholder="Search Vinyl" value={this.state.search} onChange={this.SearchEvent.bind(this)}/> */}
+
         <div className = "banner">EXCLUSIVES
         </div>
-        <input type="text" placeholder="Search Vinyl" value={this.state.search} onChange={this.SearchEvent.bind(this)}/>
 
+{/* 
+              IF I WANT TO HAVE A TABLE AND REMOVE CERTAIN COLUMNS AT CERTAIN SIZE WINDOWS/MEDIA: */}
+                       {/* <th data-breakpoints="xs">Description</th>
+                       <th data-breakpoints="xs sm">Quantity</th> */}
 
-        <table>
-                   <thead>
-                     <tr>
-                       <th></th>
-                       <th>Title</th>
-                       <th data-breakpoints="xs">Description</th>
-                       <th data-breakpoints="xs sm">Quantity</th>
-                       <th data-breakpoints="xs sm">Price</th>
-                       <th></th>
-                     </tr>
-                   </thead>
-                   <tbody>
-
-                   </tbody>
-                 </table>
 
 
                  <table id='sampleTable' className='footable table' data-show-toggle='true' data-paging='true' data-sorting="true" data-filtering="true" data-page-size="10">
