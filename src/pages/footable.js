@@ -5,9 +5,12 @@ import CustomPaginationActionsTable from '../components/Table.js';
 import TablePaginationActions from '../components/TablePaginationActions.js'
 import { withStyles } from '@material-ui/core/styles';
 import AlertDialog from '../components/dialog';
+import jQuery from 'jquery';
+import ReactDOM from 'react-dom';
 
-console.log(TablePaginationActions);
+declare var $: jQuery;
 
+//****************************************************************************************************************
 
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
@@ -24,7 +27,10 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
 const BASE = 'http://localhost:3000';
 const cart = localStorage.getItem( 'myorder' )
 
-class Exclusives extends Component {
+
+//****************************************************************************************************************
+
+class myFootable extends Component {
     constructor(props){
     super(props)
     this.myTablePaginationActions = new TablePaginationActions()
@@ -38,7 +44,8 @@ class Exclusives extends Component {
         page: 0,
         count: 1,
         open: [],
-        totalprice: 0
+        totalprice: 0,
+        pageSizeLength:10
       }
 
   }
@@ -194,6 +201,24 @@ handleClose = (element,index) => {
 // this.setState({myorder: myorder, orderpage: orderpage}, this.setmyorder)
 // }
 
+// componentDidUpdate(prevProps, prevState) {
+//   // table initialization
+//   jQuery(ReactDOM.findDOMNode(this.refs.productstable)).footable();
+// }
+
+
+componentDidMount(){
+              $('#sampleTable').footable({
+                    "columns": ["Col 1", "Col 2"],
+		                    "rows": ["Row 1", "Row 2"]
+            });
+          }
+
+
+    componentDidUpdate(prevState,prevProps){
+  if(prevState.pageSizeLength!=this.state.pageSizeLength)
+  FooTable.get('#sampleTable').pageSize(this.state.pageSizeLength);
+  }
 
 
   render() {
@@ -207,13 +232,34 @@ handleClose = (element,index) => {
         <div className = "banner">EXCLUSIVES
         </div>
 
+
+        <table ref="productstable" className="table table-hover">
+                   <thead>
+                     <tr>
+                       <th></th>
+                       <th>Title</th>
+                       <th data-breakpoints="xs">Description</th>
+                       <th data-breakpoints="xs sm">Quantity</th>
+                       <th data-breakpoints="xs sm">Price</th>
+                       <th></th>
+                     </tr>
+                   </thead>
+                   <tbody>
+
+                   </tbody>
+                 </table>
+
+
+                 <table id='sampleTable' className='footable table' data-show-toggle='true' data-paging='true' data-sorting="true" data-filtering="true" data-page-size="10">
+
+</table>
         <div className="bigbox">
 
 
 
 
     <div className="mainpage">
-<Button variant="outline">  </Button>
+{/* <Button variant="outline"> LEFT </Button> */}
 
 
             {this.state.allvinyl.map((element,index)  =>
@@ -386,4 +432,4 @@ handleClose = (element,index) => {
   }
 }
 
-export default withAuth(Exclusives);
+export default withAuth(myFootable);

@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import Home from '../pages/home';
 import Main from '../pages/main';
 import Exclusives from '../pages/exclusives';
+import myFootable from '../pages/footable';
 
 // import withAuth from '../serices/withAuth'
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route exact path ="/home" component={Home} />
           <Route exact path ="/main" component={Main} />
           <Route exact path ="/exclusives" component={Exclusives} />
+          <Route exact path ="/footable" component={myFootable} />
         </Switch>
         </Router>
 

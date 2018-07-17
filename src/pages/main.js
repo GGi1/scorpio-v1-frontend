@@ -49,7 +49,9 @@ closeNav() {
 
                   <div id="mySidenav" class="sidenav">
                     <a class="closebtn" onClick={this.closeNav.bind(this)}> &#9776;</a>
-
+                    <div id="orderheader">
+                        My Order
+                    </div>
                     <div id="side-order">
                     Add items to your cart...
                   </div>
