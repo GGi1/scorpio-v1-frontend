@@ -49,7 +49,10 @@ class myFootable extends Component {
         open: [],
         totalprice: 0,
         pageSizeLength:10,
-        search: ''
+        search: '',
+        StashedfilteredItems: [],
+        filteredItemsOnReturn: [],
+        searchparams: [],
       }
 
   }
@@ -80,7 +83,7 @@ let myorder = []
         } else{
           console.log(myorder[0]);
         this.setState({
-          allvinyl: APIinfo, myorder: myorder
+          allvinyl: APIinfo, myorder: myorder, filteredItemsOnReturn: APIinfo
         }
         // , this.getInitialState
 
@@ -224,22 +227,44 @@ handleClose = (element,index) => {
 //   FooTable.get('#sampleTable').pageSize(this.state.pageSizeLength);
 //   }
 SearchEvent(event){
-  console.log(event.target.value)
+  // console.log(event.target.value)
+  // let {searchparams} = this.state
+  // // let {StashedfilteredItems} = this.state
+  // let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
+  //     return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+  //     })
+  // searchparams.push(event.target.value)
+  // searchparams.join("")
+  // console.log(searchparams)
   this.setState({search: event.target.value.substr(0,20)})
 }
 
+catchReturn(event){
+  console.log(event.target.value)
+
+  let searchword =  event.target.value
+  // let {allvinyl} = this.state
+  // searchword.split('')
+  let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
+   return (item.artist.toLowerCase().indexOf(searchword.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+     })
+  console.log(StashedfilteredItems)
+
+
+  this.setState({filteredItemsOnReturn: StashedfilteredItems})
+
+}
+
   render() {
-    let filteredItems = this.state.allvinyl.filter((item)=>{
+    // let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
+    //   return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1);
+    // }
+    //
+    //
+    // )
 
-      console.log(item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()));
-      console.log(item.title.toLowerCase().indexOf(this.state.search.toLowerCase()));
-      return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1);
-    }
-
-
-    )
-
-
+  let StashedfilteredItems = this.state.allvinyl
+  // console.log(StashedfilteredItems)
 // console.log(TablePaginationActions);
 
     return (
@@ -250,9 +275,9 @@ SearchEvent(event){
                 id="search-field"
                 label="Search"
                 style={{color: 'white', width: '100%'}}
-                // className={classes.textField}
                 value={this.state.search}
                 onChange={this.SearchEvent.bind(this)}
+                onKeyPress={this.catchReturn.bind(this)}
                 margin="normal"
               />
               </div>
@@ -268,9 +293,7 @@ SearchEvent(event){
 
 
 
-                 <table id='sampleTable' className='footable table' data-show-toggle='true' data-paging='true' data-sorting="true" data-filtering="true" data-page-size="10">
 
-</table>
         <div className="bigbox">
 
 
@@ -280,7 +303,7 @@ SearchEvent(event){
 {/* <Button variant="outline"> LEFT </Button> */}
 
 
-            {filteredItems.map((element,index)  =>
+            {this.state.filteredItemsOnReturn.map((element,index)  =>
               <Card className='itemcard'>
                 <div className='record' style={{backgroundImage: `url(/assets/images/${element.pic})`}}>
                 </div>
