@@ -116,8 +116,8 @@ getTotalPrice(){
   price = parseFloat(element.price) + price
   }
 )
-console.log("price:");
-console.log(price);
+// console.log("price:");
+// console.log(price);
 return (
 price
 
@@ -233,22 +233,31 @@ SearchEvent(event){
   // let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
   //     return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
   //     })
-  // searchparams.push(event.target.value)
-  // searchparams.join("")
-  // console.log(searchparams)
-  this.setState({search: event.target.value.substr(0,20)})
+  // console.log(event.target.value)
+
+// console.log(event.key)
+//   searchparams.push(event.target.value)
+//   searchparams.join("")
+//   console.log(searchparams)
+
+  let searchword = event.target.value
+
+
+
+  this.setState({search: event.target.value.substr(0,20), searchparams: searchword})
 }
 
-catchReturn(event){
-  console.log(event.target.value)
+catchReturn(){
 
-  let searchword =  event.target.value
-  // let {allvinyl} = this.state
+  let {searchparams} = this.state
+  // console.log(searchparams);
+
+  // let searchword =  searchparams
   // searchword.split('')
   let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
-   return (item.artist.toLowerCase().indexOf(searchword.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+   return (item.artist.toLowerCase().indexOf(searchparams.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.searchparams.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.searchparams.toLowerCase()) !== -1)
      })
-  console.log(StashedfilteredItems)
+  // console.log(StashedfilteredItems)
 
 
   this.setState({filteredItemsOnReturn: StashedfilteredItems})
@@ -262,8 +271,8 @@ catchReturn(event){
     //
     //
     // )
-
-  let StashedfilteredItems = this.state.allvinyl
+  //
+  // let StashedfilteredItems = this.state.allvinyl
   // console.log(StashedfilteredItems)
 // console.log(TablePaginationActions);
 
@@ -277,7 +286,16 @@ catchReturn(event){
                 style={{color: 'white', width: '100%'}}
                 value={this.state.search}
                 onChange={this.SearchEvent.bind(this)}
-                onKeyPress={this.catchReturn.bind(this)}
+                onKeyPress={(ev) => {
+                  // console.log(`Pressed keyCode ${ev.key}`);
+                  if (ev.key === 'Enter') {
+                    this.catchReturn()
+                    ev.preventDefault();
+                  }}}
+
+
+
+                // {this.catchReturn.bind(this)}
                 margin="normal"
               />
               </div>
@@ -372,7 +390,7 @@ catchReturn(event){
                   <TableCell numeric className="quantitycell">${element.price}</TableCell>
                   <TableCell numeric className="quantitycell">
                           <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
-                          {console.log(this.state.open)}
+                          {/* {console.log(this.state.open)} */}
                           <Dialog
                             open={this.state.open[index]}
                             onClose={this.handleClose.bind(this,element,index)}
