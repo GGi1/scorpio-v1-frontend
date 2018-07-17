@@ -8,7 +8,10 @@ import AlertDialog from '../components/dialog';
 import jQuery from 'jquery';
 import ReactDOM from 'react-dom';
 
-declare var $: jQuery;
+//GIGA TABLES
+
+
+// declare var $: jQuery;
 
 //****************************************************************************************************************
 
@@ -45,7 +48,8 @@ class myFootable extends Component {
         count: 1,
         open: [],
         totalprice: 0,
-        pageSizeLength:10
+        pageSizeLength:10,
+        search: ''
       }
 
   }
@@ -205,23 +209,35 @@ handleClose = (element,index) => {
 //   // table initialization
 //   jQuery(ReactDOM.findDOMNode(this.refs.productstable)).footable();
 // }
-
-
-componentDidMount(){
-              $('#sampleTable').footable({
-                    "columns": ["Col 1", "Col 2"],
-		                    "rows": ["Row 1", "Row 2"]
-            });
-          }
-
-
-    componentDidUpdate(prevState,prevProps){
-  if(prevState.pageSizeLength!=this.state.pageSizeLength)
-  FooTable.get('#sampleTable').pageSize(this.state.pageSizeLength);
-  }
-
+//
+//
+// componentDidMount(){
+//               $('#sampleTable').footable({
+//                     "columns": ["Col 1", "Col 2"],
+// 		                    "rows": ["Row 1", "Row 2"]
+//             });
+//           }
+//
+//
+//     componentDidUpdate(prevState,prevProps){
+//   if(prevState.pageSizeLength!=this.state.pageSizeLength)
+//   FooTable.get('#sampleTable').pageSize(this.state.pageSizeLength);
+//   }
+SearchEvent(event){
+  console.log(event.target.value)
+  this.setState({search: event.target.value.substr(0,20)})
+}
 
   render() {
+    let filteredItems = this.state.allvinyl.filter((item)=>{
+
+      console.log(item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()));
+      console.log(item.title.toLowerCase().indexOf(this.state.search.toLowerCase()));
+      return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1);
+    }
+
+
+    )
 
 
 // console.log(TablePaginationActions);
@@ -231,9 +247,10 @@ componentDidMount(){
 
         <div className = "banner">EXCLUSIVES
         </div>
+        <input type="text" placeholder="Search Vinyl" value={this.state.search} onChange={this.SearchEvent.bind(this)}/>
 
 
-        <table ref="productstable" className="table table-hover">
+        <table>
                    <thead>
                      <tr>
                        <th></th>
@@ -262,7 +279,7 @@ componentDidMount(){
 {/* <Button variant="outline"> LEFT </Button> */}
 
 
-            {this.state.allvinyl.map((element,index)  =>
+            {filteredItems.map((element,index)  =>
               <Card className='itemcard'>
                 <div className='record' style={{backgroundImage: `url(/assets/images/${element.pic})`}}>
                 </div>
@@ -426,7 +443,7 @@ componentDidMount(){
         </div>
 
 
-
+        <input type="text" value={this.state.search} onChange={this.SearchEvent.bind(this)}/>
       </div>
     );
   }
