@@ -300,6 +300,25 @@ justify-content: center; */
   background-color: rgba(32,32,32, 0.1);
 }
 
+#hamburger-order{
+  font-size: 30px;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
+  top: 0;
+  border-radius: 100%;
+  text-align: center;
+  color: rgba(32,32,32, 1);
+  background-color: white;
+  z-index: 0;
+}
+
+#hamburger-order:hover{
+  background-color: rgba(32,32,32, 0.1);
+}
+
 
 .sidenav {
     height: 100%;
@@ -312,15 +331,12 @@ justify-content: center; */
     overflow-x: hidden;
     transition: 0.2s;
     padding-top: 0px;
-    border-left: 0.5px grey solid;
+    /* border-left: 0.5px grey solid; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .sidenav a {
-    border-radius: 100%;
-    text-align: center;
-    font-size: 30px;
-    height: 45px;
-    width: 45px;
+
     text-decoration: none;
     color: #818181;
     display: block;
@@ -331,26 +347,43 @@ justify-content: center; */
 .sidenav p {
     border-radius: 100%;
     text-align: center;
-    font-size: 30px;
+    font-size: 12px;
     height: 45px;
     width: 45px;
     text-decoration: none;
     color: #818181;
     display: block;
     transition: 0.2s;
+    background-color: blue;
+}
+.sidenav div {
+
+    text-align: center;
+    font-size: 12px;
+
+
+    display: block;
+    transition: 0.2s;
+  
 }
 
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: #707070;
     background-color: rgba(32,32,32, 0.1);
 }
 
 .sidenav .closebtn {
+  border-radius: 100%;
+  text-align: center;
+  font-size: 30px;
+  height: 45px;
+  width: 45px;
     position: absolute;
     top: 0;
-    right: 10px;
-    font-size: 36px;
+    left: 10px;
+    font-size: 30px;
+    cursor: pointer;
 
     /* margin-right: 50px; */
 }
@@ -362,6 +395,14 @@ justify-content: center; */
 
 #main:hover{
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+#side-order{
+  margin-top: 40px;
+  padding: 8px 8px 8px 8px;
+  display: block;
+  transition: 0.2s;
+
 }
 
  /* .MuiTableCell-root-8.MuiTableCell-body-10{
