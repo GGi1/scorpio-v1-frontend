@@ -49,13 +49,14 @@ class myFootable extends Component {
         StashedfilteredItems: [],
         filteredItemsOnReturn: [],
         searchparams: [],
+        searchresultline: '',
       }
 
   }
 
   componentWillMount(){
-
-    console.log(this.myTablePaginationActions);
+    //
+    // console.log(this.myTablePaginationActions);
     // let userID = Auth.getUserId()
 let myorder = []
 // if (localStorage && localStorage.getItem('cart')) {
@@ -245,19 +246,25 @@ SearchEvent(event){
 
 catchReturn(){
 
-  let {searchparams} = this.state
+  let {searchparams, searchresultline} = this.state
   // console.log(searchparams);
-
+  searchresultline = <div>Search Results for "{searchparams}"...  <a onClick ={this.undosearch.bind(this)}>undo</a></div>
   // let searchword =  searchparams
   // searchword.split('')
   let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
    return (item.artist.toLowerCase().indexOf(searchparams.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.searchparams.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.searchparams.toLowerCase()) !== -1)
      })
+
+
   // console.log(StashedfilteredItems)
 
 
-  this.setState({filteredItemsOnReturn: StashedfilteredItems})
+  this.setState({filteredItemsOnReturn: StashedfilteredItems, searchresultline: searchresultline})
 
+}
+
+undosearch(){
+  this.setState({search: '', searchparams: '', searchresultline: '', filteredItemsOnReturn: this.state.allvinyl})
 }
 
   render() {
@@ -311,11 +318,11 @@ catchReturn(){
                        {/* <th data-breakpoints="xs">Description</th>
                        <th data-breakpoints="xs sm">Quantity</th> */}
 
+{this.state.searchresultline}
 
 
 
         <div className="bigbox">
-
 
 
 
