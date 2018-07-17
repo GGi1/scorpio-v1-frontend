@@ -409,17 +409,42 @@ justify-content: center; */
 }
 .top-search-box{
   position: fixed;
-  margin-top: -8px;
+  padding-left: 5px;
+  padding-right: 5px;
   top: 0;
-  left:  50%;
-  /* color: white;
-  width: 30%;
-  background-color: rgba(63, 81, 181, 0.8);
-  background: linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0), rgba(63,81,181,1));
-  border-radius: 6px; */
-  opacity: 0.8;
+  left:  400px;
+  color: white;
+  /* width: 250px; */
+  /* height: 40px; */
+  /* background-color: rgba(63, 81, 181, 0.8);
+  background: linear-gradient(rgba(255,0,0,0), rgba(255,0,0,0), rgba(63,81,181,1)); */
+  border-radius: 6px;
+  /* border: 1px black solid; */
+  /* opacity: 0.8; */
+  display: flex;
+  justify-content: space-between;
+  align-content:stretch;
+  flex-wrap: nowrap;
 }
 
+.searchbutton{
+
+  height: 35px;
+  background-color: rgba(63, 81, 181, 0.3);
+  align-self: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
+
+
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+.searchbutton .Icon{
+    align-self: flex-end;
+}
  /* .MuiTableCell-root-8.MuiTableCell-body-10{
    background-color: red;
     font-size: 0.4125rem;

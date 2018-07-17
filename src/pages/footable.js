@@ -8,10 +8,6 @@ import AlertDialog from '../components/dialog';
 import jQuery from 'jquery';
 import ReactDOM from 'react-dom';
 
-//GIGA TABLES
-
-
-// declare var $: jQuery;
 
 //****************************************************************************************************************
 
@@ -279,11 +275,17 @@ catchReturn(){
     return (
       <div>
 
+
+
         <div className="top-search-box">
+
+
+
+
         <TextField
                 id="search-field"
                 label="Search"
-                style={{color: 'white', width: '100%'}}
+                style={{width: '200px', fontSize: '10px'}}
                 value={this.state.search}
                 onChange={this.SearchEvent.bind(this)}
                 onKeyPress={(ev) => {
@@ -292,12 +294,12 @@ catchReturn(){
                     this.catchReturn()
                     ev.preventDefault();
                   }}}
-
-
-
-                // {this.catchReturn.bind(this)}
                 margin="normal"
               />
+
+              <div className="searchbutton">
+                <Icon style={{paddingRight: '6px', color: 'black'}}>search</Icon>
+              </div>
               </div>
         {/* <input type="text" placeholder="Search Vinyl" value={this.state.search} onChange={this.SearchEvent.bind(this)}/> */}
 
