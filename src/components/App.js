@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Login';
 import Navbar from './Navbar';
 import Home from '../pages/home';
+import Main from '../pages/main';
 import Exclusives from '../pages/exclusives';
 
 // import withAuth from '../serices/withAuth'
@@ -18,7 +19,8 @@ class App extends Component {
           <Route exact path ="/login" component={Login} />
           <Route exact path ="/" component={Login} />
           <Route exact path ="/home" component={Home} />
-            <Route exact path ="/exclusives" component={Exclusives} />
+          <Route exact path ="/main" component={Main} />
+          <Route exact path ="/exclusives" component={Exclusives} />
         </Switch>
         </Router>
 

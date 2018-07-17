@@ -158,7 +158,6 @@ class Home extends Component {
   }
 
   componentWillMount(){
-
     console.log(this.myTablePaginationActions);
     // let userID = Auth.getUserId()
 let myorder = []
@@ -559,7 +558,7 @@ handleDrawerClose = () => {
 
   <Toolbar disableGutters={!open}>
 
-      <div className="hamburger">
+      <div>
     <IconButton
       color="inherit"
       aria-label="open drawer"
@@ -590,7 +589,6 @@ handleDrawerClose = () => {
   /> */}
   <Typography>{
 
-
     'You think water moves fast? You should see ice.'}</Typography>
 </main>
 {after}
@@ -609,7 +607,7 @@ testset
         </div>
 
         <div className="bigbox">
-          {/* <Carousel slidesToShow={this.state.slides} style={{height: '268px'}} width='100%' speed={800} slidesToScroll={4}>{this.getdivs()}</Carousel> */}
+           <Carousel slidesToShow={this.state.slides} style={{height: '268px'}} width='100%' speed={800} slidesToScroll={4}>{this.getdivs()}</Carousel>
 
                 {/* <Button variant="outline"> Right </Button> */}
 
