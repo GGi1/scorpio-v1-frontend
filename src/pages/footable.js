@@ -38,7 +38,7 @@ class myFootable extends Component {
         // orderpage:'',
         allvinyl: [],
         myorder: [],
-        myorderpage: 'none',
+        myorderpage: '',
         rowsPerPage: 5,
         page: 0,
         count: 1,
@@ -267,6 +267,19 @@ undosearch(){
   this.setState({search: '', searchparams: '', searchresultline: '', filteredItemsOnReturn: this.state.allvinyl})
 }
 
+
+openNav() {
+    document.getElementById("mySidenav").style.width = "650px";
+    document.getElementById("main").style.marginRight = "650px";
+    document.getElementById("hamburger").style.display = "none";
+}
+
+closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginRight= "0";
+    document.getElementById("hamburger").style.display = "";
+}
+
   render() {
     // let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
     //   return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1);
@@ -281,7 +294,198 @@ undosearch(){
 
     return (
       <div>
+        <div>
 
+
+            <span id="hamburger" onClick={this.openNav.bind(this)}>&#9776;</span>
+
+
+              <div id="main">
+                <h2>Exclusives</h2>
+                <div className = "banner">EXCLUSIVES
+                </div>
+
+        {/*
+                      IF I WANT TO HAVE A TABLE AND REMOVE CERTAIN COLUMNS AT CERTAIN SIZE WINDOWS/MEDIA: */}
+                               {/* <th data-breakpoints="xs">Description</th>
+                               <th data-breakpoints="xs sm">Quantity</th> */}
+
+        {this.state.searchresultline}
+
+
+
+                <div className="bigbox">
+
+
+
+            <div className="mainpage">
+        {/* <Button variant="outline"> LEFT </Button> */}
+
+
+                    {this.state.filteredItemsOnReturn.map((element,index)  =>
+                      <Card className='itemcard'>
+                        <div className='record' style={{backgroundImage: `url(/assets/images/${element.pic})`}}>
+                        </div>
+                          <table>
+                        <div className="title">{element.title}</div>
+                        <div className="artist">{element.artist}</div>
+                        <div className="title">${element.price}</div>
+                        <div className="cartbutton">  <Button  onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="primary"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
+                        Add to Cart
+                    </Button>
+
+                        </div>
+
+                        <tr className="labelandnum">{element.label}{element.labelnum}</tr>
+
+                      </table>
+
+                      </Card>
+                  )}
+                  </div>
+
+
+            </div>
+
+{/****** SIDE BAR *********/}
+                <div id="mySidenav" class="sidenav">
+                  <a class="closebtn" onClick={this.closeNav.bind(this)}> &#9776;</a>
+                  <div id="orderheader">
+
+                  </div>
+
+
+
+                  <div id="side-order">
+                  Add items to your cart...
+
+
+                  <div className="order" >
+                    <div className='inorder'>
+
+                        {/* <div className='ordertable'> */}
+                          <Table>
+                            <TableHead>
+                              <TableCell colSpan={4}>
+                                <Typography variant="title" id="tableTitle" style={{position: 'center', display: 'flex', justifyContent: 'center'}}>
+                                  My Order
+                                </Typography>
+                              </TableCell>  {/* <TableRow><TableCell></TableCell></TableRow> */}
+                            </TableHead>
+                            <TableBody style={{fontSize: '10px'}}>
+                              <TableRow style={{fontSize: '10px'}}>
+                                <TableCell component="th" scope="row" style={{fontSize: '10px'}}>
+                                  Title
+                                </TableCell>
+                <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>Quantity</TableCell>
+                <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>Price</TableCell>
+                  <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}></TableCell>
+                </TableRow>
+                      {this.state.myorder.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((element,index)=>
+                        <TableRow key={index}>
+                          <TableCell className="titlecell"  component="th" scope="row" style={{fontSize: '10px'}}>
+                            {element.title}
+                          </TableCell>
+                          <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>{1}</TableCell>
+                          <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>${element.price}</TableCell>
+                          <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>
+                                  <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
+                                  {/* {console.log(this.state.open)} */}
+                                  <Dialog
+                                    open={this.state.open[index]}
+                                    onClose={this.handleClose.bind(this,element,index)}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                  >
+                                    <DialogTitle id="alert-dialog-title">{<Icon>delete</Icon>}</DialogTitle>
+                                    <DialogContent>
+                                      <DialogContentText id="alert-dialog-description">
+                                        Remove {element.title} from order?
+                                      </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                      <Button onClick={this.handleClose.bind(this,element,index)} color="primary">
+                                        Disagree
+                                      </Button>
+                                      <Button onClick={this.removeItem.bind(this, element, index)} color="primary" autoFocus>
+                                        Agree
+                                      </Button>
+                                    </DialogActions>
+                                  </Dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+                        </TableCell>
+
+
+
+
+
+
+
+                        </TableRow>
+
+
+
+
+
+                      //
+                      // element.price
+
+                    )}
+
+
+                </TableBody>
+                <TableFooter>
+
+                <TableRow>
+                <TableCell component="th" scope="row" colSpan={2}>
+                Total:
+                </TableCell>
+                <TableCell numeric colSpan={1} className="quantitycell">${this.getTotalPrice()}</TableCell>
+                <TableCell numeric colSpan={1} className="quantitycell"></TableCell>
+                </TableRow>
+                <Button onClick={this.clearcart.bind(this)}>clear order</Button>
+
+
+                <TableRow>
+                <TablePagination
+                colSpan={3}
+                count={this.state.myorder.length}
+                rowsPerPage={this.state.rowsPerPage}
+                page={this.state.page}
+                onChangePage={this.handleChangePage}
+                onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                // ActionsComponent={this.TablePaginationActionsWrapped}
+                />
+                {/* {console.log(this.state.rowsPerPage)} */}
+                </TableRow>
+                </TableFooter>
+                    </Table>
+
+
+                    {/* </div> */}
+
+                    </div>
+
+                  </div>
+                {/* //ORDER above */}
+
+                  END OF ADD ITEMS TO CART
+                </div>
+                </div>
+
+                where is this
+        </div>
 
 
         <div className="top-search-box">
@@ -310,183 +514,22 @@ undosearch(){
               </div>
         {/* <input type="text" placeholder="Search Vinyl" value={this.state.search} onChange={this.SearchEvent.bind(this)}/> */}
 
-        <div className = "banner">EXCLUSIVES
-        </div>
-
-{/*
-              IF I WANT TO HAVE A TABLE AND REMOVE CERTAIN COLUMNS AT CERTAIN SIZE WINDOWS/MEDIA: */}
-                       {/* <th data-breakpoints="xs">Description</th>
-                       <th data-breakpoints="xs sm">Quantity</th> */}
-
-{this.state.searchresultline}
 
 
 
-        <div className="bigbox">
 
 
-
-    <div className="mainpage">
-{/* <Button variant="outline"> LEFT </Button> */}
-
-
-            {this.state.filteredItemsOnReturn.map((element,index)  =>
-              <Card className='itemcard'>
-                <div className='record' style={{backgroundImage: `url(/assets/images/${element.pic})`}}>
-                </div>
-                  <table>
-                <div className="title">{element.title}</div>
-                <div className="artist">{element.artist}</div>
-                <div className="title">${element.price}</div>
-                <div className="cartbutton">  <Button  onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="primary"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
-                Add to Cart
-            </Button>
-
-                </div>
-
-                <tr className="labelandnum">{element.label}{element.labelnum}</tr>
-
-              </table>
-
-              </Card>
-          )}
-          </div>
-          <div className="orderbutton" onClick={this.toggleOrder.bind(this)}><Button variant="contained" color="primary"><Icon style={{padding: '0px'}}>shopping_cart</Icon>
+{/* ORDER BUTTON  */}
+          {/* <div className="orderbutton" onClick={this.toggleOrder.bind(this)}><Button variant="contained" color="primary"><Icon style={{padding: '0px'}}>shopping_cart</Icon>
           <div>Total: ${this.getTotalPrice()}</div>
-    </Button>
+        </Button> */}
             {/* <div className="ordertext">my order
       </div> */}
-
-          </div>
-          <div className="order" >
-
-            {/* {this.state.orderpage} */}
-
-            <div className='inorder' style={{display: this.state.myorderpage}}>
-              <Card>
-<div className='ordertable'>
-              <Table>
-              <TableHead>
-                <TableCell colSpan={4}>
-                <Typography variant="title" id="tableTitle" style={{position: 'center', display: 'flex', justifyContent: 'center'}}>
-              My Order
-            </Typography>
-            </TableCell>
-
-
-                {/* <TableRow>
-                <TableCell>
-                </TableCell>
-                </TableRow> */}
-
-
-            </TableHead>
-<TableBody>
-      <TableRow>
-        <TableCell component="th" scope="row">
-          Title
-        </TableCell>
-        <TableCell numeric className="quantitycell">Quantity</TableCell>
-        <TableCell numeric className="quantitycell">Price</TableCell>
-          <TableCell numeric className="quantitycell"></TableCell>
-      </TableRow>
-              {this.state.myorder.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((element,index)=>
-                <TableRow key={index}>
-                  <TableCell className="titlecell"  component="th" scope="row">
-                    {element.title}
-                  </TableCell>
-                  <TableCell numeric className="quantitycell">{1}</TableCell>
-                  <TableCell numeric className="quantitycell">${element.price}</TableCell>
-                  <TableCell numeric className="quantitycell">
-                          <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
-                          {/* {console.log(this.state.open)} */}
-                          <Dialog
-                            open={this.state.open[index]}
-                            onClose={this.handleClose.bind(this,element,index)}
-                            aria-labelledby="alert-dialog-title"
-                            aria-describedby="alert-dialog-description"
-                          >
-                            <DialogTitle id="alert-dialog-title">{<Icon>delete</Icon>}</DialogTitle>
-                            <DialogContent>
-                              <DialogContentText id="alert-dialog-description">
-                                Remove {element.title} from order?
-                              </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>
-                              <Button onClick={this.handleClose.bind(this,element,index)} color="primary">
-                                Disagree
-                              </Button>
-                              <Button onClick={this.removeItem.bind(this, element, index)} color="primary" autoFocus>
-                                Agree
-                              </Button>
-                            </DialogActions>
-                          </Dialog>
+          {/* </div> */}
+{/* ORDER BUTTON END */}
 
 
 
-
-
-
-
-
-
-
-
-
-                </TableCell>
-
-
-
-
-
-
-
-                </TableRow>
-
-
-
-
-
-              //
-              // element.price
-
-            )}
-
-
-  </TableBody>
-  <TableFooter>
-
-    <TableRow>
-      <TableCell component="th" scope="row" colSpan={2}>
-        Total:
-      </TableCell>
-      <TableCell numeric colSpan={1} className="quantitycell">${this.getTotalPrice()}</TableCell>
-      <TableCell numeric colSpan={1} className="quantitycell"></TableCell>
-    </TableRow>
-     <Button onClick={this.clearcart.bind(this)}>clear order</Button>
-
-
-    <TableRow>
-      <TablePagination
-        colSpan={3}
-        count={this.state.myorder.length}
-        rowsPerPage={this.state.rowsPerPage}
-        page={this.state.page}
-        onChangePage={this.handleChangePage}
-        onChangeRowsPerPage={this.handleChangeRowsPerPage}
-        // ActionsComponent={this.TablePaginationActionsWrapped}
-      />
-      {/* {console.log(this.state.rowsPerPage)} */}
-    </TableRow>
-  </TableFooter>
-            </Table>
-
-            {/* <CustomPaginationActionsTable/> */}
-            </div>
-</Card>
-            </div>
-
-          </div>
 
 
 
