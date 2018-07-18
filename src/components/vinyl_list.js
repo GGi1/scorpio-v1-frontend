@@ -29,7 +29,7 @@ const cart = localStorage.getItem( 'myorder' )
 
 //****************************************************************************************************************
 
-class myFootable extends Component {
+class VinylList extends Component {
     constructor(props){
     super(props)
     this.myTablePaginationActions = new TablePaginationActions()

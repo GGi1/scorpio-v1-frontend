@@ -269,8 +269,8 @@ undosearch(){
 
 
 openNav() {
-    document.getElementById("mySidenav").style.width = "650px";
-    document.getElementById("main").style.marginRight = "650px";
+    document.getElementById("mySidenav").style.width = "400px";
+    document.getElementById("main").style.marginRight = "400px";
     document.getElementById("hamburger").style.display = "none";
 }
 
@@ -360,35 +360,34 @@ closeNav() {
                   Add items to your cart...
 
 
-                  <div className="order" >
-                    <div className='inorder'>
+                  <div>
+                    {/* <div className='inorder'> */}
 
                         {/* <div className='ordertable'> */}
-                          <Table>
-                            <TableHead>
-                              <TableCell colSpan={4}>
+
                                 <Typography variant="title" id="tableTitle" style={{position: 'center', display: 'flex', justifyContent: 'center'}}>
                                   My Order
                                 </Typography>
-                              </TableCell>  {/* <TableRow><TableCell></TableCell></TableRow> */}
-                            </TableHead>
+
                             <TableBody style={{fontSize: '10px'}}>
                               <TableRow style={{fontSize: '10px'}}>
                                 <TableCell component="th" scope="row" style={{fontSize: '10px'}}>
                                   Title
                                 </TableCell>
-                <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>Quantity</TableCell>
+                <TableCell numeric className="quantitycell" padding='none' style={{fontSize: '10px'}}>Quantity</TableCell>
                 <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>Price</TableCell>
                   <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}></TableCell>
                 </TableRow>
+
                       {this.state.myorder.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((element,index)=>
                         <TableRow key={index}>
-                          <TableCell className="titlecell"  component="th" scope="row" style={{fontSize: '10px'}}>
-                            {element.title}
+
+                          <TableCell style={{fontSize: '10px'}}>
+                            {element.title} <br/> {element.artist}
                           </TableCell>
-                          <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>{1}</TableCell>
-                          <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>${element.price}</TableCell>
-                          <TableCell numeric className="quantitycell" style={{fontSize: '10px'}}>
+                          <TableCell numeric style={{fontSize: '10px', backgroundColor: 'red', width: '10px'}}>{1}</TableCell>
+                          <TableCell numeric style={{fontSize: '10px'}}>${element.price}</TableCell>
+                          <TableCell numeric style={{fontSize: '10px'}}>
                                   <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
                                   {/* {console.log(this.state.open)} */}
                                   <Dialog
@@ -434,17 +433,81 @@ closeNav() {
 
                         </TableRow>
 
-
-
-
-
-                      //
-                      // element.price
-
                     )}
-
-
                 </TableBody>
+
+
+
+<table className = "side-order-table">
+  <tr className = "side-order-table-toprow">
+    <td className = "side-order-table-borderbottom">
+        Title
+    </td>
+    <td className = "side-order-table-borderbottom">
+        Quantity
+    </td>
+    <td className = "side-order-table-borderbottom">
+      Price
+    </td>
+    <td className = "side-order-table-borderbottom">
+    </td>
+  </tr>
+
+  {this.state.myorder.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((element,index)=>
+
+       <tr key={index}>
+        <td>  {element.title} <br/> {element.artist}</td>
+  <td> {1}</td>
+    <td> ${element.price}</td>
+      <td> <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
+      {/* {console.log(this.state.open)} */}
+      <Dialog
+        open={this.state.open[index]}
+        onClose={this.handleClose.bind(this,element,index)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{<Icon>delete</Icon>}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Remove {element.title} from order?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.handleClose.bind(this,element,index)} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={this.removeItem.bind(this, element, index)} color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog></td>
+
+      </tr>
+  )}
+
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <TableFooter>
 
                 <TableRow>
@@ -470,14 +533,13 @@ closeNav() {
                 {/* {console.log(this.state.rowsPerPage)} */}
                 </TableRow>
                 </TableFooter>
-                    </Table>
 
 
                     {/* </div> */}
 
                     </div>
 
-                  </div>
+                  {/* </div> */}
                 {/* //ORDER above */}
 
                   END OF ADD ITEMS TO CART
