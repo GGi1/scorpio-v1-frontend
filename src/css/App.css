@@ -429,28 +429,30 @@ justify-content: center; */
 .searchbutton{
 
   height: 35px;
-  background-color: rgba(63, 81, 181, 0.3);
+  /* background-color: rgba(63, 81, 181, 0.3); */
   align-self: flex-end;
   display: flex;
-  justify-content: center;
-  align-content: flex-end;
-  text-align: center;
-
   font-size: 30px;
   height: 45px;
   width: 45px;
   border-radius: 100%;
-
   color: rgba(32,32,32, 1);
   /* background-color: white; */
   z-index: 1;
   border-radius: 100%;
+  align-items: center;
+  justify-content: center;
 }
+
+
 
 .searchbutton .Icon{
     align-self: flex-end;
 }
+.searchbutton:hover{
 
+background-color: rgba(32,32,32, 0.1);
+}
 .side-order-table{
   font-size: 10px;
   border-bottom: 1px grey;

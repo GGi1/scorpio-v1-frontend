@@ -39,7 +39,7 @@ class myFootable extends Component {
         allvinyl: [],
         myorder: [],
         myorderpage: '',
-        rowsPerPage: 5,
+        rowsPerPage: 10,
         page: 0,
         count: 1,
         open: [],
@@ -258,17 +258,17 @@ SearchEvent(event){
 }
 
 catchReturn(){
-
   let {searchparams, searchresultline} = this.state
-  // console.log(searchparams);
+  let StashedfilteredItems = this.state.filteredItemsOnReturn;
+  if (searchparams.length > 1){
   searchresultline = <div>Search Results for "{searchparams}"...  <a onClick ={this.undosearch.bind(this)}>undo</a></div>
   // let searchword =  searchparams
   // searchword.split('')
-  let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
+  StashedfilteredItems = this.state.allvinyl.filter((item)=>{
    return (item.artist.toLowerCase().indexOf(searchparams.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.searchparams.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.searchparams.toLowerCase()) !== -1)
      })
 
-
+}
   // console.log(StashedfilteredItems)
 
 
@@ -503,7 +503,7 @@ if(this.state.orderdisplay == "none"){
               </div>
                 </div>
 
-                where is this
+
         </div>
 
 
@@ -535,7 +535,7 @@ if(this.state.orderdisplay == "none"){
 
 
 
-              <div className="searchbutton">
+              <div className="searchbutton" onClick={this.catchReturn.bind(this)}>
                 <Icon style={{paddingRight: '6px', color: 'black'}}>search</Icon>
               </div>
               </div>
@@ -564,7 +564,7 @@ if(this.state.orderdisplay == "none"){
         </div>
 
 
-        <input type="text" value={this.state.search} onChange={this.SearchEvent.bind(this)}/>
+        {/* <input type="text" value={this.state.search} onChange={this.SearchEvent.bind(this)}/> */}
       </div>
     );
   }
