@@ -224,11 +224,11 @@ handleClose = (element,index) => {
                 <div className="title">{element.title}</div>
                 <div className="artist">{element.artist}</div>
                 <div className="title">${element.price}</div>
-                <div className="cartbutton">  <Button  onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="primary"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
+                 <Button  onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="primary"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
                 Add to Cart
             </Button>
 
-                </div>
+                
 
                 <tr className="labelandnum">{element.label}{element.labelnum}</tr>
 

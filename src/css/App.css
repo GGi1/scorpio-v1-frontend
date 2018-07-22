@@ -19,12 +19,13 @@
   /* background-color: #202020; */
   height: 54px;
   padding: 5px;
-  color: white;
+  color: grey;
   display: flex;
   margin-bottom: 30px;
   position: fixed;
-  background-color: rgb(255,255,255,.99);
+  background-color:rgb(255,255,255,.99);
   width: 100%;
+  z-index: 1;
 }
 
 .logo-title {
@@ -147,10 +148,7 @@ box-shadow: 10px 10px 40px grey;
 
 }
 
-/* .cartbutton{
-display: flex;
-justify-content: center;
-} */
+
 
 .cartbutton2{
    margin-top: -20px;
@@ -164,7 +162,7 @@ justify-content: center; */
 
 .orderbutton{
   position: fixed;
-  z-index: 100;
+  z-index: 2;
   opacity: .8;
   right: 0px;
   top: 0px;
@@ -296,7 +294,7 @@ justify-content: center; */
   text-align: center;
   color: rgba(32,32,32, 1);
   background-color: white;
-  z-index: 0;
+  z-index: 2;
 }
 
 #hamburger:hover{
@@ -315,7 +313,7 @@ justify-content: center; */
   text-align: center;
   color: rgba(32,32,32, 1);
   background-color: white;
-  z-index: 0;
+  z-index: 2;
 }
 
 #hamburger-order:hover{
@@ -327,7 +325,7 @@ justify-content: center; */
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     right: 0;
     background-color: white;
@@ -414,6 +412,7 @@ justify-content: center; */
   top: 0;
   left:  400px;
   color: white;
+  z-index: 1;
   /* width: 250px; */
   /* height: 40px; */
   /* background-color: rgba(63, 81, 181, 0.8);
@@ -444,7 +443,7 @@ justify-content: center; */
 
   color: rgba(32,32,32, 1);
   /* background-color: white; */
-  z-index: 0;
+  z-index: 1;
   border-radius: 100%;
 }
 

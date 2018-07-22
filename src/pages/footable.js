@@ -50,6 +50,7 @@ class myFootable extends Component {
         filteredItemsOnReturn: [],
         searchparams: [],
         searchresultline: '',
+        orderdisplay: '',
       }
 
   }
@@ -82,29 +83,28 @@ let myorder = []
         this.setState({
           allvinyl: APIinfo, myorder: myorder, filteredItemsOnReturn: APIinfo
         }
-        // , this.getInitialState
+        , this.isThereAnOrder
 
 
       )
         }
 })
 }
-
-getInitialState() {
-    var myorder = localStorage.getItem( 'myorder' );
-    // console.log(myorder);
-    if(myorder == 'undefined'){
-      myorder = [];
-      console.log('here');
-    } else{
-      console.log('there');
-      }
-      console.log(myorder);
-    this.setState( { myorder: myorder} );
-    // return {
-    //     myorder: myorder
-    // };
-}
+//
+// getInitialState() {
+//     var myorder = localStorage.getItem( 'myorder' );
+//     // console.log(myorder);
+//     var orderdiplay = '';
+//     if(myorder == 'undefined'){
+//       myorder = [];
+//       var orderdisplay = "none";
+//     } else{
+//       console.log('there');
+//       var orderdisplay = "none";
+//       }
+//       console.log(orderdisplay);
+//     this.setState( { myorder: myorder, orderdisplay: orderdisplay} );
+// }
 
 getTotalPrice(){
   let {myorder} = this.state
@@ -121,7 +121,20 @@ price
   )
 }
 
+isThereAnOrder(){
+  var display = ''
+  console.log(this.state.myorder.length)
+  if(this.state.myorder.length < 1){
+    display = "none"
+  }
+  else {
+    display = ""
+  }
+console.log(display)
+  this.setState({orderdisplay: display})
 
+
+}
 
 setmyorder() {
     // localStorage.setItem( 'myorder',{price: '9.95', title: 'baby'});
@@ -135,30 +148,30 @@ setmyorder() {
 
 clearcart(){
    localStorage.removeItem('myorder');
-   this.setState({myorder: []})
+   this.setState({myorder: []}, this.isThereAnOrder)
 }
 
 handleChangePage = (event, page) => {
   this.setState({ page });
 };
 
-toggleOrder(){
-  let myorderpage
-
-  if(this.state.myorderpage == 'flex'){
-    myorderpage = 'none'
-  } else {
-    myorderpage = 'flex'
-  }
-
-  this.setState({myorderpage: myorderpage})
-}
+// toggleOrder(){
+//   let myorderpage
+//
+//   if(this.state.myorderpage == 'flex'){
+//     myorderpage = 'none'
+//   } else {
+//     myorderpage = 'flex'
+//   }
+//
+//   this.setState({myorderpage: myorderpage})
+// }
 
 
 addToOrder(element){
   let {myorder} = this.state
   myorder.push(element)
-  this.setState({myorder: myorder}, this.setmyorder)
+  this.setState({myorder: myorder, orderdisplay: ''}, this.setmyorder)
 }
 
 
@@ -171,7 +184,7 @@ handleChangeRowsPerPage = event => {
 removeItem(element, index){
   let {myorder} = this.state
   myorder.splice(index, 1)
-  this.setState({myorder: myorder}, this.setmyorder, this.handleClose(element,index)
+  this.setState({myorder: myorder}, this.setmyorder, this.isThereAnOrder, this.handleClose(element,index)
 )
 }
 
@@ -269,8 +282,8 @@ undosearch(){
 
 
 openNav() {
-    document.getElementById("mySidenav").style.width = "400px";
-    document.getElementById("main").style.marginRight = "400px";
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginRight = "250px";
     document.getElementById("hamburger").style.display = "none";
 }
 
@@ -291,6 +304,11 @@ closeNav() {
   // let StashedfilteredItems = this.state.allvinyl
   // console.log(StashedfilteredItems)
 // console.log(TablePaginationActions);
+let altdisplay = "none";
+
+if(this.state.orderdisplay == "none"){
+  altdisplay = ""
+}
 
     return (
       <div>
@@ -324,7 +342,10 @@ closeNav() {
 
                     {this.state.filteredItemsOnReturn.map((element,index)  =>
                       <Card className='itemcard'>
-                        <div className='record' style={{backgroundImage: `url(/assets/images/${element.pic})`}}>
+{/* TO GET PHOTO NAME UNCOMMENT NEXT LINE: */}
+                   {/* {  console.log(`url(/assets/images/${element.title.replace(/[^a-zA-Z0-9 ]/g, "").substr(0,5).split(" ").join("_")}${element.artist.replace(/[^a-zA-Z0-9]/g, "").split(' ').join('_')}.jpg`)  } */}
+                        {/* <div className='record' style={{backgroundImage: `url(/assets/images/${element.pic})`}}> */}
+                        <div className='record' style={{backgroundImage: `url(/assets/images/${element.title.replace(/[^a-zA-Z0-9 ]/g, "").substr(0,5).split(" ").join("_")}${element.artist.replace(/[^a-zA-Z0-9]/g, "").split(' ').join('_')}.jpg`    }}>
                         </div>
                           <table>
                         <div className="title">{element.title}</div>
@@ -347,7 +368,7 @@ closeNav() {
 
             </div>
 
-{/****** SIDE BAR *********/}
+{/********** SIDE BAR *************/}
                 <div id="mySidenav" class="sidenav">
                   <a class="closebtn" onClick={this.closeNav.bind(this)}> &#9776;</a>
                   <div id="orderheader">
@@ -355,15 +376,17 @@ closeNav() {
                   </div>
 
 
-
                   <div id="side-order">
-                  Add items to your cart...
 
+                    <div id="alt-message" style={{display: altdisplay}}>
+                    Add items to your cart...
+                    </div>
 
                   <div>
                     {/* <div className='inorder'> */}
 
-                        {/* <div className='ordertable'> */}
+                        <div id='ordervis' style={{display: this.state.orderdisplay}}>
+
 
                                 <Typography variant="title" id="tableTitle" style={{position: 'center', display: 'flex', justifyContent: 'center'}}>
                                   My Order
@@ -474,12 +497,19 @@ closeNav() {
                   {/* </div> */}
                 {/* //ORDER above */}
 
-                  END OF ADD ITEMS TO CART
+                  {/* END OF ADD ITEMS TO CART */}
                 </div>
+
+              </div>
                 </div>
 
                 where is this
         </div>
+
+
+
+
+
 
 
         <div className="top-search-box">
@@ -501,6 +531,9 @@ closeNav() {
                   }}}
                 margin="normal"
               />
+
+
+
 
               <div className="searchbutton">
                 <Icon style={{paddingRight: '6px', color: 'black'}}>search</Icon>
