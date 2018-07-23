@@ -116,7 +116,7 @@ getTotalPrice(){
 // console.log("price:");
 // console.log(price);
 return (
-price
+price.toFixed(2)
 
   )
 }
@@ -294,6 +294,12 @@ closeNav() {
 }
 
   render() {
+
+    window.onscroll = function(ev) {
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+        alert("you're at the bottom of the page");
+    }
+};
     // let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
     //   return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1);
     // }
@@ -319,7 +325,7 @@ if(this.state.orderdisplay == "none"){
 
 
               <div id="main">
-                <h2>Exclusives</h2>
+
                 <div className = "banner">EXCLUSIVES
                 </div>
 
@@ -350,7 +356,7 @@ if(this.state.orderdisplay == "none"){
                           <table>
                         <div className="title">{element.title}</div>
                         <div className="artist">{element.artist}</div>
-                        <div className="title">${element.price}</div>
+                        <div className="title">${parseInt(element.price).toFixed(2)}</div>
                         <div className="cartbutton">  <Button  onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="primary"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
                         Add to Cart
                     </Button>
@@ -413,7 +419,7 @@ if(this.state.orderdisplay == "none"){
        <tr key={index}>
         <td>  {element.title} <br/> {element.artist}</td>
   <td> {1}</td>
-    <td> ${element.price}</td>
+    <td> ${parseInt(element.price).toFixed(2)}</td>
       <td> <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
       {/* {console.log(this.state.open)} */}
       <Dialog

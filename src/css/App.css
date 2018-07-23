@@ -1,4 +1,7 @@
-
+* {
+  box-sizing: border-box;
+  outline: none;
+}
 
 .App {
   text-align: center;
@@ -16,14 +19,15 @@
 
 
 .App-header {
-  /* background-color: #202020; */
-  height: 54px;
+
+  height: 74px;
   padding: 5px;
   color: grey;
   display: flex;
   margin-bottom: 30px;
   position: fixed;
   background-color:rgb(255,255,255,.99);
+  /* background-color: #202020; */
   width: 100%;
   z-index: 1;
 }
@@ -194,6 +198,7 @@ justify-content: center; */
   border-top: .5px black solid;
   border-bottom: .5px black dashed;
   margin-bottom: 18px;
+  margin-top: 70px;
   padding: 20px;
   color: #222;
   font-size: 25px;
@@ -289,7 +294,7 @@ justify-content: center; */
   cursor: pointer;
   position: fixed;
   right: 10px;
-  top: 0;
+  top: 10px;
   border-radius: 100%;
   text-align: center;
   color: rgba(32,32,32, 1);
@@ -308,7 +313,7 @@ justify-content: center; */
   cursor: pointer;
   position: fixed;
   right: 10px;
-  top: 0;
+  top: 10px;
   border-radius: 100%;
   text-align: center;
   color: rgba(32,32,32, 1);
@@ -442,6 +447,9 @@ justify-content: center; */
   border-radius: 100%;
   align-items: center;
   justify-content: center;
+
+    transition: box-shadow 0.2s;
+      overflow:visible;
 }
 
 
@@ -449,10 +457,121 @@ justify-content: center; */
 .searchbutton .Icon{
     align-self: flex-end;
 }
-.searchbutton:hover{
+.searchbutton::hover{
 
 background-color: rgba(32,32,32, 0.1);
 }
+
+.searchbutton::active{
+background-color: rgba(32,32,32, 0.1);
+}
+
+
+
+
+.material-button-raised {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0 8px;
+  border: none;
+  border-radius: 2px;
+  padding: 0 16px;
+  min-width: 64px;
+  height: 36px;
+  vertical-align: middle;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #2196f3;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  font-family: "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.material-button-raised:hover,
+.material-button-raised:focus {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.searchbutton:active {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+/*
+.searchbutton:disabled {
+  color: rgba(0, 0, 0, 0.38);
+  background-color: rgba(0, 0, 0, 0.12);
+  box-shadow: none;
+  cursor: initial;
+}
+
+.searchbutton::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.searchbutton:hover::before {
+  opacity: 0.12;
+}
+
+.searchbutton:focus::before {
+  opacity: 0.2;
+}
+
+.searchbutton:active::before {
+  opacity: 0.32;
+}
+
+.searchbutton:disabled::before {
+  opacity: 0;
+}
+
+.searchbutton::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  border-radius: 50%;
+  padding: 50%;
+  width: 32px;
+  height: 32px;
+  background-color: currentColor;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1) ;
+  transition: opacity 1s, transform 0.5s;
+}
+
+.searchbutton:active::after {
+  opacity: 0.4;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0s;
+}
+
+.searchbutton:disabled::after {
+  opacity: 0;
+} */
+
+
+
+
+
+
+
+
 .side-order-table{
   font-size: 10px;
   border-bottom: 1px grey;
