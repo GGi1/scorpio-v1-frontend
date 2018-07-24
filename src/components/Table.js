@@ -93,7 +93,7 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
   TablePaginationActions,
 );
 
-console.log(TablePaginationActions);
+// console.log(TablePaginationActions);
 
 let counter = 0;
 function createData(name, calories, fat) {

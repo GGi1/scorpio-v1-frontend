@@ -25,7 +25,7 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
 );
 const BASE = 'http://localhost:3000';
 const cart = localStorage.getItem( 'myorder' )
-
+let bottomhit=0
 
 //****************************************************************************************************************
 
@@ -51,14 +51,12 @@ class myFootable extends Component {
         searchparams: [],
         searchresultline: '',
         orderdisplay: '',
-        bottomhit: 0,
         width: 0,
         height: props.height
 
 
       }
 
-      this.updatehit= this.updatehit.bind(this);
       this.myTablePaginationActions = new TablePaginationActions()
 
   }
@@ -99,6 +97,20 @@ let myorder = []
 })
 }
 
+
+componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind(this));
+}
+
+
+handleScroll(event) {
+    let scrollTop = event.srcElement.body.scrollTop,
+        itemTranslate = Math.min(0, scrollTop/3 - 60);
+        // console.log(itemTranslate)
+    this.setState({
+      transform: itemTranslate
+    })
+  }
 
 updatehit(){
   console.log("update hit running")
@@ -315,82 +327,21 @@ closeNav() {
 }
 
 
-addItemsOnScrolling(){
-  console.log("add items function called");
-  // this.state.filteredItemsOnReturn = this.state.allvinyl
-  // this.setState({filteredItemsOnReturn: this.state.filteredItemsOnReturn.slice(0, 100*(this.state.bottomhit+1)), bottomhit: this.state.bottomhit + 1})
+render() {
 
+    window.onscroll = function(ev) {
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+          bottomhit ++
+          console.log(bottomhit)
+        }
 
-}
-
-hitbottom(){
-// console.log("hitbottom is running")
-// let {bottomhit} = this.state
-// window.onscroll = function(ev) {
-// if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-//     // alert("you're at the bottom of the page");
-//     // this.addItemsOnScrolling.bind(this)
-//     // console.log(this.state)
-//
-//       bottomhit ++
-//       console.log(bottomhit)
-//       // this.setState({bottomhit:bottomhit})
-//
-//     }
-//
-// return bottomhit
-// }
-//
-// return this.state.totalprice
-//
-
-
-
-  let {myorder} = this.state
-  let price = 0
-  let {bottomhit} = this.state
-
-  window.onscroll = function(ev) {
-  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-      // alert("you're at the bottom of the page");
-      // this.addItemsOnScrolling.bind(this)
-      // console.log(this.state)
-
-        bottomhit ++
-        console.log(bottomhit)
       }
 
-    }
-
-    console.log(window.onscroll)
-    console.log("test", bottomhit)
-
-
-
-
-  myorder.map((element)=>{
-  price = parseFloat(element.price) + price
-  }
-)
-return (
-price.toFixed(2)
-  )
-
-}
-
-
-
-
-simplefunction(){
-  alert("test");
-}
-
-  render() {
     //
     // window.onscroll = function(ev) {
     // if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
     //     // alert("you're at the bottom of the page");
-    //     // this.addItemsOnScrolling.bind(this)
+
     //     // console.log(this.state)
     //
     //       bottomhit ++
@@ -429,9 +380,10 @@ if(this.state.orderdisplay == "none"){
               <div id="main">
 
                 <div className = "banner"><b>EXCLUSIVES</b>
-                  {this.state.bottomhit}
-                  {this.hitbottom()}
-                  {this.state.width}
+                  {/* {this.state.bottomhit} */}
+                  {/* {bottomhit} */}
+                  {/* {this.hitBottom.bind(this)}
+                  {this.state.width} */}
                 </div>
 
         {/*
@@ -453,8 +405,8 @@ if(this.state.orderdisplay == "none"){
 
 {/* LIMIT THE FILTEREDITEMSONRETURN (from search) BASED ON NUMBER OF TIMES BOTTOM OF BROWSWER IS HIT: */}
 
-{console.log(this.state.bottomhit)}
-                    {this.state.filteredItemsOnReturn.slice(0, 20*(this.state.bottomhit+1)).map((element,index)  =>
+
+                    {this.state.filteredItemsOnReturn.slice(0, 35*(bottomhit+1)).map((element,index)  =>
                       <Card className='itemcard'>
 {/* TO GET PHOTO NAME UNCOMMENT NEXT LINE: */}
                    {/* {  console.log(`url(/assets/images/${element.title.replace(/[^a-zA-Z0-9 ]/g, "").substr(0,5).split(" ").join("_")}${element.artist.replace(/[^a-zA-Z0-9]/g, "").split(' ').join('_')}.jpg`)  } */}
@@ -511,8 +463,8 @@ if(this.state.orderdisplay == "none"){
             </div>
 
 {/********** SIDE BAR *************/}
-                <div id="mySidenav" class="sidenav">
-                  <a class="closebtn" onClick={this.closeNav.bind(this)}> &#9776;</a>
+                <div id="mySidenav" className="sidenav">
+                  <a className="closebtn" onClick={this.closeNav.bind(this)}> &#9776;</a>
                   <div id="orderheader">
 
                   </div>
@@ -536,6 +488,7 @@ if(this.state.orderdisplay == "none"){
 
 
 <table className = "side-order-table">
+  <tbody>
   <tr className = "side-order-table-toprow">
     <td className = "side-order-table-borderbottom">
         Title
@@ -582,7 +535,7 @@ if(this.state.orderdisplay == "none"){
 
       </tr>
   )}
-
+</tbody>
     </table>
 
 
