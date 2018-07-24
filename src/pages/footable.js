@@ -32,7 +32,6 @@ const cart = localStorage.getItem( 'myorder' )
 class myFootable extends Component {
     constructor(props){
     super(props)
-    this.myTablePaginationActions = new TablePaginationActions()
       this.state={
         order: 'show',
         // orderpage:'',
@@ -43,6 +42,7 @@ class myFootable extends Component {
         page: 0,
         count: 1,
         open: [],
+        openQuantitySelect: [],
         totalprice: 0,
         pageSizeLength:10,
         search: '',
@@ -51,7 +51,15 @@ class myFootable extends Component {
         searchparams: [],
         searchresultline: '',
         orderdisplay: '',
+        bottomhit: 0,
+        width: 0,
+        height: props.height
+
+
       }
+
+      this.updatehit= this.updatehit.bind(this);
+      this.myTablePaginationActions = new TablePaginationActions()
 
   }
 
@@ -90,6 +98,12 @@ let myorder = []
         }
 })
 }
+
+
+updatehit(){
+  console.log("update hit running")
+   this.setState({ width: window.innerWidth, height: window.innerHeight });
+}
 //
 // getInitialState() {
 //     var myorder = localStorage.getItem( 'myorder' );
@@ -106,6 +120,7 @@ let myorder = []
 //     this.setState( { myorder: myorder, orderdisplay: orderdisplay} );
 // }
 
+
 getTotalPrice(){
   let {myorder} = this.state
   let price = 0
@@ -117,7 +132,6 @@ getTotalPrice(){
 // console.log(price);
 return (
 price.toFixed(2)
-
   )
 }
 
@@ -192,6 +206,13 @@ handleClickOpen = (element,index) => {
 let {open} = this.state
 open[index] = true
   this.setState({ open: open});
+};
+
+
+enterquantity = (element,index) => {
+let {openQuantitySelect} = this.state
+openQuantitySelect[index] = true
+  this.setState({ openQuantitySelect: openQuantitySelect});
 };
 
 handleClose = (element,index) => {
@@ -293,13 +314,95 @@ closeNav() {
     document.getElementById("hamburger").style.display = "";
 }
 
-  render() {
 
-    window.onscroll = function(ev) {
-    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-        alert("you're at the bottom of the page");
+addItemsOnScrolling(){
+  console.log("add items function called");
+  // this.state.filteredItemsOnReturn = this.state.allvinyl
+  // this.setState({filteredItemsOnReturn: this.state.filteredItemsOnReturn.slice(0, 100*(this.state.bottomhit+1)), bottomhit: this.state.bottomhit + 1})
+
+
+}
+
+hitbottom(){
+// console.log("hitbottom is running")
+// let {bottomhit} = this.state
+// window.onscroll = function(ev) {
+// if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+//     // alert("you're at the bottom of the page");
+//     // this.addItemsOnScrolling.bind(this)
+//     // console.log(this.state)
+//
+//       bottomhit ++
+//       console.log(bottomhit)
+//       // this.setState({bottomhit:bottomhit})
+//
+//     }
+//
+// return bottomhit
+// }
+//
+// return this.state.totalprice
+//
+
+
+
+  let {myorder} = this.state
+  let price = 0
+  let {bottomhit} = this.state
+
+  window.onscroll = function(ev) {
+  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+      // alert("you're at the bottom of the page");
+      // this.addItemsOnScrolling.bind(this)
+      // console.log(this.state)
+
+        bottomhit ++
+        console.log(bottomhit)
+      }
+
     }
-};
+
+    console.log(window.onscroll)
+    console.log("test", bottomhit)
+
+
+
+
+  myorder.map((element)=>{
+  price = parseFloat(element.price) + price
+  }
+)
+return (
+price.toFixed(2)
+  )
+
+}
+
+
+
+
+simplefunction(){
+  alert("test");
+}
+
+  render() {
+    //
+    // window.onscroll = function(ev) {
+    // if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+    //     // alert("you're at the bottom of the page");
+    //     // this.addItemsOnScrolling.bind(this)
+    //     // console.log(this.state)
+    //
+    //       bottomhit ++
+    //       console.log(bottomhit)
+    //       // this.setState({bottomhit:bottomhit})
+    //     }
+    //     return bottomhit
+    //     // change filteredItemsOnReturn from only 100 items to 200 items, 200 items, etc..
+    //   }
+    //
+    //   console.log(bottomhit)
+
     // let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
     //   return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1);
     // }
@@ -311,7 +414,6 @@ closeNav() {
   // console.log(StashedfilteredItems)
 // console.log(TablePaginationActions);
 let altdisplay = "none";
-
 if(this.state.orderdisplay == "none"){
   altdisplay = ""
 }
@@ -326,7 +428,10 @@ if(this.state.orderdisplay == "none"){
 
               <div id="main">
 
-                <div className = "banner">EXCLUSIVES
+                <div className = "banner"><b>EXCLUSIVES</b>
+                  {this.state.bottomhit}
+                  {this.hitbottom()}
+                  {this.state.width}
                 </div>
 
         {/*
@@ -338,6 +443,7 @@ if(this.state.orderdisplay == "none"){
 
 
 
+
                 <div className="bigbox">
 
 
@@ -345,8 +451,10 @@ if(this.state.orderdisplay == "none"){
             <div className="mainpage">
         {/* <Button variant="outline"> LEFT </Button> */}
 
+{/* LIMIT THE FILTEREDITEMSONRETURN (from search) BASED ON NUMBER OF TIMES BOTTOM OF BROWSWER IS HIT: */}
 
-                    {this.state.filteredItemsOnReturn.map((element,index)  =>
+{console.log(this.state.bottomhit)}
+                    {this.state.filteredItemsOnReturn.slice(0, 20*(this.state.bottomhit+1)).map((element,index)  =>
                       <Card className='itemcard'>
 {/* TO GET PHOTO NAME UNCOMMENT NEXT LINE: */}
                    {/* {  console.log(`url(/assets/images/${element.title.replace(/[^a-zA-Z0-9 ]/g, "").substr(0,5).split(" ").join("_")}${element.artist.replace(/[^a-zA-Z0-9]/g, "").split(' ').join('_')}.jpg`)  } */}
@@ -357,10 +465,38 @@ if(this.state.orderdisplay == "none"){
                         <div className="title">{element.title}</div>
                         <div className="artist">{element.artist}</div>
                         <div className="title">${parseInt(element.price).toFixed(2)}</div>
-                        <div className="cartbutton">  <Button  onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="primary"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
+                        <div className="cartbutton">
+                           {/* <Button style={{backgroundColor: '#0b05ff82'}} onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon> */}
+
+                        <Button style={{backgroundColor: '#0b05ff82'}} onClick={this.enterquantity.bind(this,element,index)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
+
+{/* onClick={this.handleClickOpen.bind(this,element,index)} */}
                         Add to Cart
+
+
                     </Button>
 
+                    <Dialog
+                      open={this.state.open[index]}
+                      onClose={this.handleClose.bind(this,element,index)}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                    >
+                      <DialogTitle id="alert-dialog-title">{<Icon>delete</Icon>}</DialogTitle>
+                      <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                          Remove {element.title} from order?
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={this.handleClose.bind(this,element,index)} color="primary">
+                          Disagree
+                        </Button>
+                        <Button onClick={this.removeItem.bind(this, element, index)} color="primary" autoFocus>
+                          Agree
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                         </div>
 
                         <tr className="labelandnum">{element.label}{element.labelnum}</tr>
@@ -575,5 +711,6 @@ if(this.state.orderdisplay == "none"){
     );
   }
 }
+
 
 export default withAuth(myFootable);
