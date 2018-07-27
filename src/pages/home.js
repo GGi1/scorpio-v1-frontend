@@ -18,7 +18,8 @@ import TablePaginationActions from '../components/TablePaginationActions.js'
 
 
 
-const BASE = 'http://localhost:3000';
+const BASE = 'https://scorpio-music-backend-api.herokuapp.com/vinyls';
+// const BASE = 'http://localhost:3000';
 // const cart = localStorage.getItem( 'myorder' )
 let bottomhit=0
 
@@ -71,7 +72,7 @@ let myorder = []
       myorder = cart
       console.log(myorder);
     }
-    return fetch(BASE + '/exclusives')
+    return fetch(BASE + '/vinyls')
       .then((resp) => {
         return resp.json()
       })
