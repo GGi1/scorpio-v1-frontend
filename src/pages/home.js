@@ -18,7 +18,7 @@ import TablePaginationActions from '../components/TablePaginationActions.js'
 
 
 
-const BASE = 'https://scorpio-music-backend-api.herokuapp.com/vinyls';
+const BASE = 'https://scorpio-music-backend-api.herokuapp.com';
 // const BASE = 'http://localhost:3000';
 // const cart = localStorage.getItem( 'myorder' )
 let bottomhit=0
