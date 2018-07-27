@@ -13,7 +13,7 @@ render(){
       <img src={logo} className="App-logo" alt="logo" />
 
       <div className="logo-title">
-        <div className="scorpio">SCORPIO</div>
+        <div className="scorpio">scorpio</div>
         <div className="since">Music Distributors</div>
       </div>
 

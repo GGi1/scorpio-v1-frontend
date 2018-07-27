@@ -369,7 +369,9 @@ render() {
 // console.log(TablePaginationActions);
 let altdisplay = "none";
 if(this.state.orderdisplay === "none"){
+  console.log("this is running")
   altdisplay = ""
+  console.log(altdisplay)
 }
 
     return (
@@ -382,12 +384,8 @@ if(this.state.orderdisplay === "none"){
 
               <div id="main">
 
-                <div className = "banner"><b>EXCLUSIVES</b>
-                  {/* {this.state.bottomhit} */}
-                  {/* {bottomhit} */}
-                  {/* {this.hitBottom.bind(this)}
-                  {this.state.width} */}
-                </div>
+                {/* <div className = "banner"><b>EXCLUSIVES</b></div> */}
+                <div className = "banner2"><b>EXCLUSIVES</b></div>
 
         {/*
                       IF I WANT TO HAVE A TABLE AND REMOVE CERTAIN COLUMNS AT CERTAIN SIZE WINDOWS/MEDIA: */}
@@ -530,8 +528,8 @@ if(this.state.orderdisplay === "none"){
                   <div>
                     {/* <div className='inorder'> */}
 
-                        {/* <div id='ordervis' style={{display: this.state.orderdisplay}}> */}
-<div>
+                        <div id='ordervis' style={{display: this.state.orderdisplay}}>
+{/* <div> */}
 
                                 <Typography variant="title" id="tableTitle" style={{position: 'center', display: 'flex', justifyContent: 'center'}}>
                                   My Order
