@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
-import PersistentDrawer from '../components/PersistentDrawer2';
+// import PersistentDrawer from '../components/PersistentDrawer2';
 
 class Main extends Component {
   constructor(props){
@@ -63,4 +63,4 @@ closeNav() {
       }
 
 }
-export default Main
+export default withAuth(Main)

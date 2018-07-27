@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
-import {Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
-import CustomPaginationActionsTable from '../components/Table.js';
+import {Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
 import TablePaginationActions from '../components/TablePaginationActions.js'
 import { withStyles } from '@material-ui/core/styles';
-import AlertDialog from '../components/dialog';
+// import AlertDialog from '../components/dialog';
 
 console.log(TablePaginationActions);
 
@@ -228,7 +227,7 @@ handleClose = (element,index) => {
                 Add to Cart
             </Button>
 
-                
+
 
                 <tr className="labelandnum">{element.label}{element.labelnum}</tr>
 

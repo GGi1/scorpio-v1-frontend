@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
-import {TextField, Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
-import CustomPaginationActionsTable from '../components/Table.js';
+import {TextField, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
+
 import TablePaginationActions from '../components/TablePaginationActions.js'
 import { withStyles } from '@material-ui/core/styles';
-import AlertDialog from '../components/dialog';
-import jQuery from 'jquery';
-import ReactDOM from 'react-dom';
+
 
 
 //****************************************************************************************************************
@@ -24,7 +22,7 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
   TablePaginationActions,
 );
 const BASE = 'http://localhost:3000';
-const cart = localStorage.getItem( 'myorder' )
+// const cart = localStorage.getItem( 'myorder' )
 let bottomhit=0
 
 //****************************************************************************************************************
@@ -373,11 +371,9 @@ if(this.state.orderdisplay == "none"){
       <div>
         <div>
 
-
             <span id="hamburger" onClick={this.openNav.bind(this)}>&#9776;</span>
 
-
-              <div id="main">
+            <div id="main">
 
                 <div className = "banner"><b>EXCLUSIVES</b>
                   {/* {this.state.bottomhit} */}
@@ -404,8 +400,6 @@ if(this.state.orderdisplay == "none"){
         {/* <Button variant="outline"> LEFT </Button> */}
 
 {/* LIMIT THE FILTEREDITEMSONRETURN (from search) BASED ON NUMBER OF TIMES BOTTOM OF BROWSWER IS HIT: */}
-
-
                     {this.state.filteredItemsOnReturn.slice(0, 35*(bottomhit+1)).map((element,index)  =>
                       <Card className='itemcard'>
 {/* TO GET PHOTO NAME UNCOMMENT NEXT LINE: */}
@@ -420,7 +414,7 @@ if(this.state.orderdisplay == "none"){
                         <div className="cartbutton">
                            {/* <Button style={{backgroundColor: '#0b05ff82'}} onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon> */}
 
-                        <Button style={{backgroundColor: '#0b05ff82'}} onClick={this.enterquantity.bind(this,element,index)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
+                        <Button style={{backgroundColor: '#f3c02b'}} onClick={this.enterquantity.bind(this,element,index)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
 
 {/* onClick={this.handleClickOpen.bind(this,element,index)} */}
                         Add to Cart
@@ -450,9 +444,9 @@ if(this.state.orderdisplay == "none"){
                       </DialogActions>
                     </Dialog>
                         </div>
-
+                        <tbody>
                         <tr className="labelandnum">{element.label}{element.labelnum}</tr>
-
+</tbody>
                       </table>
 
                       </Card>
@@ -479,8 +473,8 @@ if(this.state.orderdisplay == "none"){
                   <div>
                     {/* <div className='inorder'> */}
 
-                        <div id='ordervis' style={{display: this.state.orderdisplay}}>
-
+                        {/* <div id='ordervis' style={{display: this.state.orderdisplay}}> */}
+<div>
 
                                 <Typography variant="title" id="tableTitle" style={{position: 'center', display: 'flex', justifyContent: 'center'}}>
                                   My Order

@@ -16,6 +16,10 @@
 
 }
 
+body{
+  background-color: #fafafa;
+}
+
 
 
 .App-header {
@@ -27,9 +31,31 @@
   margin-bottom: 30px;
   position: fixed;
   background-color:rgb(255,255,255,.99);
+  background-color: #cacaca;
   /* background-color: #202020; */
   width: 100%;
   z-index: 1;
+  box-shadow: 2px black;
+
+
+background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+
+background: linear-gradient(141deg, #536976 0%, #bababa 51%, #cacaca 75%);
+background: #ECE9E6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(180deg, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(180deg, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+/* background-image: linear-gradient(141deg, rgb(15, 184, 173) 0%, rgb(31, 200, 219) 51%, rgb(44, 181, 232) 75%);
+background-position-x: initial;
+background-position-y: initial;
+background-size: initial;
+background-repeat-x: initial;
+background-repeat-y: initial;
+background-attachment: initial;
+background-origin: initial;
+background-clip: initial;
+background-color: initial; */
 }
 
 .logo-title {
@@ -59,6 +85,11 @@
 .scorpio{
   font-size: 28px;
   color: #202020;
+  /* color: #fafafa; */
+  font-weight:bold;
+  background: -webkit-linear-gradient(#888, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: Georgia, Verdana;
 }
 
@@ -205,6 +236,9 @@ justify-content: center; */
   padding: 20px;
   color: #222;
   font-size: 25px;
+  background: -webkit-linear-gradient(#888, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
 }
 .inorder{
@@ -572,7 +606,10 @@ background-color: rgba(32,32,32, 0.1);
 
 
 
-
+.quantityline{
+  display: flex;
+  justify-content: center;
+}
 
 
 .side-order-table{

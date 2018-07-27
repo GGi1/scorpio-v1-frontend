@@ -1,164 +1,64 @@
 import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
-import {Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
-import CustomPaginationActionsTable from '../components/Table.js';
+
+// import {TextField, Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
+import {TextField, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
+
+
 import TablePaginationActions from '../components/TablePaginationActions.js'
-import { withStyles } from '@material-ui/core/styles';
-import AlertDialog from '../components/dialog';
-// import Slider from "react-slick";
-// import Responsive from "../components/slider/vinylslider"
-import "../css/index.css";
-import Carousel from "nuka-carousel";
-import PersistentDrawer from '../components/PersistentDrawer';
+
+// import AlertDialog from '../components/dialog';
+// import jQuery from 'jquery';
+// import ReactDOM from 'react-dom';
 
 
-//PERSISTANT DRAWER ------
-import PropTypes from 'prop-types';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+//****************************************************************************************************************
 
-const drawerWidth = '240 px';
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  appFrame: {
-    height: 430,
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
-  },
-  appBar: {
-    position: 'absolute',
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  'appBarShift-left': {
-    marginLeft: drawerWidth,
-  },
-  'appBarShift-right': {
-    marginRight: drawerWidth,
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
-  },
-  hide: {
-    display: 'none',
-  },
-  drawerPaper: {
-    position: 'relative',
-    width: 240,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  'content-left': {
-    marginLeft: -drawerWidth,
-  },
-  'content-right': {
-    marginRight: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  'contentShift-left': {
-    marginLeft: 0,
-  },
-  'contentShift-right': {
-    marginRight: 0,
-  },
-});
-//-----
+// const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
 
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
-const actionsStyles = theme => ({
-  root: {
-    flexShrink: 0,
-    color: theme.palette.text.secondary,
-    marginLeft: theme.spacing.unit * 2.5,
-  },
-});
-const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: true })(
-  TablePaginationActions,
-);
 const BASE = 'http://localhost:3000';
-const cart = localStorage.getItem( 'myorder' )
+// const cart = localStorage.getItem( 'myorder' )
+let bottomhit=0
 
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 5,
-  slidesToScroll: 5,
-};
+//****************************************************************************************************************
 
-
-class Home extends Component {
-  constructor(props){
+class myFootable extends Component {
+    constructor(props){
     super(props)
-    this.myTablePaginationActions = new TablePaginationActions()
       this.state={
         order: 'show',
         // orderpage:'',
         allvinyl: [],
         myorder: [],
-        myorderpage: 'none',
-        rowsPerPage: 5,
+        myorderpage: '',
+        rowsPerPage: 10,
         page: 0,
         count: 1,
         open: [],
+        openQuantitySelect: [],
         totalprice: 0,
-        myarray: ["2", "4", "6", "8", "10"],
-        carousel: '',
-        slides: 4,
-        open: false,
-        anchor: 'right',
+        pageSizeLength:10,
+        search: '',
+        StashedfilteredItems: [],
+        filteredItemsOnReturn: [],
+        searchparams: [],
+        searchresultline: '',
+        orderdisplay: '',
+        width: 0,
+        height: props.height
+
+
       }
+
+      this.myTablePaginationActions = new TablePaginationActions()
 
   }
 
   componentWillMount(){
-    console.log(this.myTablePaginationActions);
+    //
+    // console.log(this.myTablePaginationActions);
     // let userID = Auth.getUserId()
 let myorder = []
 // if (localStorage && localStorage.getItem('cart')) {
@@ -171,20 +71,20 @@ let myorder = []
       myorder = cart
       console.log(myorder);
     }
-    return fetch(BASE + '/vinyls')
+    return fetch(BASE + '/exclusives')
       .then((resp) => {
         return resp.json()
       })
       .then(APIinfo => {
-        if(APIinfo.length ==0 ){
+        if(APIinfo.length ===0 ){
 
           // this.props.history.push('/log', nodata.true)
         } else{
           console.log(myorder[0]);
         this.setState({
-          allvinyl: APIinfo, myorder: myorder
+          allvinyl: APIinfo, myorder: myorder, filteredItemsOnReturn: APIinfo
         }
-        // , this.getInitialState
+        , this.isThereAnOrder
 
 
       )
@@ -193,56 +93,40 @@ let myorder = []
 }
 
 
-getdivs(){
-let mydivs =
-this.state.allvinyl.map((element,index)  =>{
-    return(
+componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind(this));
+}
 
-      <div className='itemcard2'>
-        {/* <Card> */}
-      <div className='record2' style={{backgroundImage: `url(/assets/images/${element.pic})`}}>
-      <Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
-      </div>
 
-      {/* <div className="title">{element.title}</div>
-      <div className="artist">{element.artist}</div>
-      <div className="title">${element.price}</div> */}
-      <div className="cartbutton2"> <Card> <Button  onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="black" style={{border: 'none'}}><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
-      Add to Cart
-  </Button>
-</Card>
-
-      </div>
-
-      {/* <div className="labelandnum">{element.label}{element.labelnum}</div> */}
-  {/* </Card> */}
-
-    </div>
-
-  )
-
+handleScroll(event) {
+    let scrollTop = event.srcElement.body.scrollTop,
+        itemTranslate = Math.min(0, scrollTop/3 - 60);
+        // console.log(itemTranslate)
+    this.setState({
+      transform: itemTranslate
+    })
   }
 
-)
-
-return mydivs
+updatehit(){
+  console.log("update hit running")
+   this.setState({ width: window.innerWidth, height: window.innerHeight });
 }
+//
+// getInitialState() {
+//     var myorder = localStorage.getItem( 'myorder' );
+//     // console.log(myorder);
+//     var orderdiplay = '';
+//     if(myorder == 'undefined'){
+//       myorder = [];
+//       var orderdisplay = "none";
+//     } else{
+//       console.log('there');
+//       var orderdisplay = "none";
+//       }
+//       console.log(orderdisplay);
+//     this.setState( { myorder: myorder, orderdisplay: orderdisplay} );
+// }
 
-getInitialState() {
-    var myorder = localStorage.getItem( 'myorder' );
-    // console.log(myorder);
-    if(myorder == 'undefined'){
-      myorder = [];
-      console.log('here');
-    } else{
-      console.log('there');
-      }
-      console.log(myorder);
-    this.setState( { myorder: myorder} );
-    // return {
-    //     myorder: myorder
-    // };
-}
 
 getTotalPrice(){
   let {myorder} = this.state
@@ -251,15 +135,27 @@ getTotalPrice(){
   price = parseFloat(element.price) + price
   }
 )
-console.log("price:");
-console.log(price);
+// console.log("price:");
+// console.log(price);
 return (
-price
-
+price.toFixed(2)
   )
 }
 
+isThereAnOrder(){
+  var display = ''
+  console.log(this.state.myorder.length)
+  if(this.state.myorder.length < 1){
+    display = "none"
+  }
+  else {
+    display = ""
+  }
+console.log(display)
+  this.setState({orderdisplay: display})
 
+
+}
 
 setmyorder() {
     // localStorage.setItem( 'myorder',{price: '9.95', title: 'baby'});
@@ -273,30 +169,30 @@ setmyorder() {
 
 clearcart(){
    localStorage.removeItem('myorder');
-   this.setState({myorder: []})
+   this.setState({myorder: []}, this.isThereAnOrder)
 }
 
 handleChangePage = (event, page) => {
   this.setState({ page });
 };
 
-toggleOrder(){
-  let myorderpage
-
-  if(this.state.myorderpage == 'flex'){
-    myorderpage = 'none'
-  } else {
-    myorderpage = 'flex'
-  }
-
-  this.setState({myorderpage: myorderpage})
-}
+// toggleOrder(){
+//   let myorderpage
+//
+//   if(this.state.myorderpage == 'flex'){
+//     myorderpage = 'none'
+//   } else {
+//     myorderpage = 'flex'
+//   }
+//
+//   this.setState({myorderpage: myorderpage})
+// }
 
 
 addToOrder(element){
   let {myorder} = this.state
   myorder.push(element)
-  this.setState({myorder: myorder}, this.setmyorder)
+  this.setState({myorder: myorder, orderdisplay: ''}, this.setmyorder)
 }
 
 
@@ -309,7 +205,7 @@ handleChangeRowsPerPage = event => {
 removeItem(element, index){
   let {myorder} = this.state
   myorder.splice(index, 1)
-  this.setState({myorder: myorder}, this.setmyorder, this.handleClose(element,index)
+  this.setState({myorder: myorder}, this.setmyorder, this.isThereAnOrder, this.handleClose(element,index)
 )
 }
 
@@ -317,6 +213,13 @@ handleClickOpen = (element,index) => {
 let {open} = this.state
 open[index] = true
   this.setState({ open: open});
+};
+
+
+enterquantity = (element,index) => {
+let {openQuantitySelect} = this.state
+openQuantitySelect[index] = true
+  this.setState({ openQuantitySelect: openQuantitySelect});
 };
 
 handleClose = (element,index) => {
@@ -342,321 +245,240 @@ handleClose = (element,index) => {
 //     </div>
 // this.setState({myorder: myorder, orderpage: orderpage}, this.setmyorder)
 // }
-sliderdivs(){
-  let div = []
-  div = this.state.allvinyl.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((element,index)  =>
-    {
-      return(<Card className='itemcard'>
-      <div className='record' style={{backgroundImage: `url(/assets/images/${element.pic})`}}>
-      </div>
-        <table>
-      <div className="title">{element.title}</div>
-      <div className="artist">{element.artist}</div>
-      <div className="title">${element.price}</div>
-      <div className="cartbutton">  <Button  onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="primary"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
-      Add to Cart
-  </Button>
 
-      </div>
+// componentDidUpdate(prevProps, prevState) {
+//   // table initialization
+//   jQuery(ReactDOM.findDOMNode(this.refs.productstable)).footable();
+// }
+//
+//
+// componentDidMount(){
+//               $('#sampleTable').footable({
+//                     "columns": ["Col 1", "Col 2"],
+// 		                    "rows": ["Row 1", "Row 2"]
+//             });
+//           }
+//
+//
+//     componentDidUpdate(prevState,prevProps){
+//   if(prevState.pageSizeLength!=this.state.pageSizeLength)
+//   FooTable.get('#sampleTable').pageSize(this.state.pageSizeLength);
+//   }
+SearchEvent(event){
+  // console.log(event.target.value)
+  // let {searchparams} = this.state
+  // // let {StashedfilteredItems} = this.state
+  // let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
+  //     return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+  //     })
+  // console.log(event.target.value)
 
-      <tr className="labelandnum">{element.label}{element.labelnum}</tr>
+// console.log(event.key)
+//   searchparams.push(event.target.value)
+//   searchparams.join("")
+//   console.log(searchparams)
 
-    </table>
+  let searchword = event.target.value
 
-    </Card>
-  )
-  }
 
-)
-console.log(div)
-return div
+
+  this.setState({search: event.target.value.substr(0,20), searchparams: searchword})
 }
-handleDrawerOpen = () => {
-  this.setState({ open: true });
-};
 
-handleDrawerClose = () => {
-  this.setState({ open: false });
-};
+catchReturn(){
+  let {searchparams, searchresultline} = this.state
+  let StashedfilteredItems = this.state.filteredItemsOnReturn;
+  if (searchparams.length > 1){
+  searchresultline = <div>Search Results for "{searchparams}"...  <a onClick ={this.undosearch.bind(this)}>undo</a></div>
+  // let searchword =  searchparams
+  // searchword.split('')
+  StashedfilteredItems = this.state.allvinyl.filter((item)=>{
+   return (item.artist.toLowerCase().indexOf(searchparams.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.searchparams.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.searchparams.toLowerCase()) !== -1)
+     })
 
-  render() {
-    const { classes, theme } = this.props;
-    const { anchor, open } = this.state;
-    const drawer = (
-      <Drawer
-        variant="persistent"
-        anchor="right"
-        open={open}
-        style={{backgroundColor: 'red', width: '800px'}}
-        className='mydrawer'
-        // classes={{
-        //   paper: classes.drawerPaper,
-        //  }}
-      >
-        {/* <div className={classes.drawerHeader}>  */}  <div>
-
-          My Order
-          <IconButton onClick={this.handleDrawerClose}>
-            {/* {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />} */}
-             <ChevronRightIcon />
-          </IconButton>
-        </div>
-
-        <Divider />
-
-<div style={{width: '340px', backgroundColor: 'pink'}}>
-  <Table>
-
-  <TableBody>
-  <TableRow>
-  <TableCell>
-  Title
-  </TableCell>
-  <TableCell numeric className="quantitycell">Quantity</TableCell>
-  <TableCell numeric className="quantitycell">Price</TableCell>
-  <TableCell numeric className="quantitycell"></TableCell>
-  </TableRow>
-  {this.state.myorder.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((element,index)=>
-    <TableRow key={index}>
-      <TableCell className="titlecell"  component="th" scope="row">
-        {element.title}
-      </TableCell>
-      <TableCell numeric className="quantitycell">{1}</TableCell>
-      <TableCell numeric className="quantitycell">${element.price}</TableCell>
-      <TableCell numeric className="quantitycell">
-              <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
-              {console.log(this.state.open)}
-              <Dialog
-                open={this.state.open[index]}
-                onClose={this.handleClose.bind(this,element,index)}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle id="alert-dialog-title">{<Icon>delete</Icon>}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Remove {element.title} from order?
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={this.handleClose.bind(this,element,index)} color="primary">
-                    Disagree
-                  </Button>
-                  <Button onClick={this.removeItem.bind(this, element, index)} color="primary" autoFocus>
-                    Agree
-                  </Button>
-                </DialogActions>
-              </Dialog>
+}
+  // console.log(StashedfilteredItems)
 
 
+  this.setState({filteredItemsOnReturn: StashedfilteredItems, searchresultline: searchresultline})
+
+}
+
+undosearch(){
+  this.setState({search: '', searchparams: '', searchresultline: '', filteredItemsOnReturn: this.state.allvinyl})
+}
 
 
+openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginRight = "250px";
+    document.getElementById("hamburger").style.display = "none";
+}
+
+closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginRight= "0";
+    document.getElementById("hamburger").style.display = "";
+}
 
 
+handleChange(event, element, index){
+  console.log(event.target)
+    console.log(event)
+      console.log(element)
+        console.log(index)
+    // this.setState({ [event.target.name]: event.target.value });
+  };
 
+render() {
 
+    window.onscroll = function(ev) {
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+          bottomhit ++
+          console.log(bottomhit)
+        }
 
+      }
 
+    //
+    // window.onscroll = function(ev) {
+    // if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+    //     // alert("you're at the bottom of the page");
 
+    //     // console.log(this.state)
+    //
+    //       bottomhit ++
+    //       console.log(bottomhit)
+    //       // this.setState({bottomhit:bottomhit})
+    //     }
+    //     return bottomhit
+    //     // change filteredItemsOnReturn from only 100 items to 200 items, 200 items, etc..
+    //   }
+    //
+    //   console.log(bottomhit)
 
-    </TableCell>
-
-
-
-
-
-
-
-    </TableRow>
-
-
-
-
-
+    // let StashedfilteredItems = this.state.allvinyl.filter((item)=>{
+    //   return (item.artist.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || item.label.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1);
+    // }
+    //
+    //
+    // )
   //
-  // element.price
-
-  )}
-
-
-  </TableBody>
-  <TableFooter>
-
-  <TableRow>
-  <TableCell component="th" scope="row" colSpan={2}>
-  Total:
-  </TableCell>
-  <TableCell numeric colSpan={1} className="quantitycell">${this.getTotalPrice()}</TableCell>
-  <TableCell numeric colSpan={1} className="quantitycell"></TableCell>
-  </TableRow>
-  <Button onClick={this.clearcart.bind(this)}>clear order</Button>
-
-
-  <TableRow>
-  <TablePagination
-  colSpan={3}
-  count={this.state.myorder.length}
-  rowsPerPage={this.state.rowsPerPage}
-  page={this.state.page}
-  onChangePage={this.handleChangePage}
-  onChangeRowsPerPage={this.handleChangeRowsPerPage}
-  // ActionsComponent={this.TablePaginationActionsWrapped}
-  />
-  {/* {console.log(this.state.rowsPerPage)} */}
-  </TableRow>
-  </TableFooter>
-  </Table>
-  Test 1234
-</div>
-
-
-
-        {/* <List>{mailFolderListItems}</List> */}
-        <Divider />
-        {/* <List>{otherMailFolderListItems}</List> */}
-      </Drawer>
-    );
-
-    let before = null;
-    let after = null;
-
-    if (anchor === 'left') {
-      before = drawer;
-    } else {
-      after = drawer;
-    }
-
-
-
-
-
+  // let StashedfilteredItems = this.state.allvinyl
+  // console.log(StashedfilteredItems)
 // console.log(TablePaginationActions);
+let altdisplay = "none";
+if(this.state.orderdisplay === "none"){
+  altdisplay = ""
+}
 
     return (
       <div>
-        {/* //BUTTON ONE: */}
-        <div className="orderbutton" onClick={this.toggleOrder.bind(this)}><Button  href="#bottomorder" variant="contained" color="primary"><Icon style={{padding: '0px'}}>shopping_cart</Icon>
-        <div>Total: ${this.getTotalPrice()}</div>
-      </Button>
-        </div>
-        {/* //BUTTON TYPE TWO: */}
-        {/* <div className="orderbutton"><Button  href="#bottomorder" variant="contained" color="primary"><Icon style={{padding: '0px'}}>shopping_cart</Icon>
-        <div>Total: ${this.getTotalPrice()}</div>
-        </Button>
-        </div> */}
+        <div>
 
 
-
-{/* <PersistentDrawer order={this.state.myorder}/> */}
-<AppBar
-  // className={classNames(classes.appBar, {
-  //   [classes.appBarShift]: open,
-  //   [classes[`appBarShift-${anchor}`]]: open,
-  // })}
->
-    <div className="fullwidthflexright">
-
-  <Toolbar disableGutters={!open}>
-
-      <div>
-    <IconButton
-      color="inherit"
-      aria-label="open drawer"
-      onClick={this.handleDrawerOpen}
-      // className={classNames(classes.menuButton, open && classes.hide)}
-    >
-      <MenuIcon />
-    </IconButton>
-    </div>
-
-    <Typography variant="title" color="inherit" noWrap>
-
-    </Typography>
-  </Toolbar>
-    </div>
-</AppBar>
+            <span id="hamburger" onClick={this.openNav.bind(this)}>&#9776;</span>
 
 
-{before}
-<main
-  // className={classNames(classes.content, classes[`content-${anchor}`], {
-  //   [classes.contentShift]: open,
-  //   [classes[`contentShift-${anchor}`]]: open,
-  // })}
->
-  {/* <div
-    // className={classes.drawerHeader}
-  /> */}
-  <Typography>{
+              <div id="main">
 
-    'You think water moves fast? You should see ice.'}</Typography>
-</main>
-{after}
-testset
+                <div className = "banner"><b>EXCLUSIVES</b>
+                  {/* {this.state.bottomhit} */}
+                  {/* {bottomhit} */}
+                  {/* {this.hitBottom.bind(this)}
+                  {this.state.width} */}
+                </div>
+
+        {/*
+                      IF I WANT TO HAVE A TABLE AND REMOVE CERTAIN COLUMNS AT CERTAIN SIZE WINDOWS/MEDIA: */}
+                               {/* <th data-breakpoints="xs">Description</th>
+                               <th data-breakpoints="xs sm">Quantity</th> */}
+
+        {this.state.searchresultline}
 
 
 
 
+                <div className="bigbox">
+
+
+
+            <div className="mainpage">
+        {/* <Button variant="outline"> LEFT </Button> */}
+
+{/* LIMIT THE FILTEREDITEMSONRETURN (from search) BASED ON NUMBER OF TIMES BOTTOM OF BROWSWER IS HIT: */}
+
+
+                    {this.state.filteredItemsOnReturn.slice(0, 35*(bottomhit+1)).map((element,index)  =>
+                      <Card className='itemcard'>
+{/* TO GET PHOTO NAME UNCOMMENT NEXT LINE: */}
+                   {/* {  console.log(`url(/assets/images/${element.title.replace(/[^a-zA-Z0-9 ]/g, "").substr(0,5).split(" ").join("_")}${element.artist.replace(/[^a-zA-Z0-9]/g, "").split(' ').join('_')}.jpg`)  } */}
+                        {/* <div className='record' style={{backgroundImage: `url(/assets/images/${element.pic})`}}> */}
+                        <div className='record' style={{backgroundImage: `url(/assets/images/${element.title.replace(/[^a-zA-Z0-9 ]/g, "").substr(0,5).split(" ").join("_")}${element.artist.replace(/[^a-zA-Z0-9]/g, "").split(' ').join('_')}.jpg`    }}>
+                        </div>
+                          <table>
+                        <div className="title">{element.title}</div>
+                        <div className="artist">{element.artist}</div>
+                        <div className="title">${parseInt(element.price).toFixed(2)}</div>
+                        <div className="quantityline">
+                        Quantity: <input type="number" defaultValue={1} min={1} style={{width: "30px"}}/>
+</div>
+                        {/* <Select
+                                    value={this.state.age}
+                                    onChange={this.handleChange.bind(this, element, index)}
+
+                                  >
+
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={6}>6</MenuItem>
+            <MenuItem value={7}>7</MenuItem>
+            <MenuItem value={8}>8</MenuItem>
+            <MenuItem value={9}>9</MenuItem>
+          </Select> */}
+
+
+                        {/* <Select
+                                   native
+                                   value={this.state.}
+                                   onChange={this.handleChange.bind(this)}
+                                   inputProps={{
+                                     name: 'age',
+                                     id: 'age-native-simple',
+                                   }}
+                                 >
+
+
+
+                                   <option value={1}>1</option>
+                                   <option value={2}>2</option>
+                                   <option value={3}>3</option>
+                                   <option value={4}>4</option>
+                                   <option value={5}>5</option>
+                                   <option value={6}>6</option>
+                                   <option value={7}>7</option>
+                                   <option value={8}>8</option>
+                                   <option value={9}>9</option>
+                                 </Select> */}
 
 
 
 
+                        <div className="cartbutton">
+
+                           <Button style={{background: 'linear-gradient(0deg, #fc7a1a 0%, #fcb713 100%)'}} onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
+
+                        {/* <Button style={{backgroundColor: '#0b05ff82'}} onClick={this.enterquantity.bind(this,element,index)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon> */}
+
+{/* onClick={this.handleClickOpen.bind(this,element,index)} */}
+                        Add to Cart
 
 
-        <div className = "banner">EXCLUSIVES
-        </div>
+                    </Button>
 
-        <div className="bigbox">
-           <Carousel slidesToShow={this.state.slides} style={{height: '268px'}} width='100%' speed={800} slidesToScroll={4}>{this.getdivs()}</Carousel>
-
-                {/* <Button variant="outline"> Right </Button> */}
-
-
-
-
-
-        </div>
-        <div className="fullwidthflex">
-
-<Card style={{width: '90%'}} id="bottomorder">
-
-        <Table>
-        <TableHead>
-          <TableCell colSpan={4}>
-              <div className="fullwidthflex">
-          <Typography variant="title" id="tableTitle">
-        My Order
-      </Typography>
-    </div>
-      </TableCell>
-
-
-          {/* <TableRow>
-          <TableCell>
-          </TableCell>
-          </TableRow> */}
-
-
-      </TableHead>
-<TableBody>
-<TableRow>
-  <TableCell>
-    Title
-  </TableCell>
-  <TableCell numeric className="quantitycell">Quantity</TableCell>
-  <TableCell numeric className="quantitycell">Price</TableCell>
-    <TableCell numeric className="quantitycell"></TableCell>
-</TableRow>
-        {this.state.myorder.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((element,index)=>
-          <TableRow key={index}>
-            <TableCell className="titlecell"  component="th" scope="row">
-              {element.title}
-            </TableCell>
-            <TableCell numeric className="quantitycell">{1}</TableCell>
-            <TableCell numeric className="quantitycell">${element.price}</TableCell>
-            <TableCell numeric className="quantitycell">
-                    <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
-                    {console.log(this.state.open)}
                     <Dialog
                       open={this.state.open[index]}
                       onClose={this.handleClose.bind(this,element,index)}
@@ -678,6 +500,94 @@ testset
                         </Button>
                       </DialogActions>
                     </Dialog>
+                        </div>
+                        <tbody>
+                        <tr className="labelandnum">{element.label}{element.labelnum}</tr>
+</tbody>
+                      </table>
+
+                      </Card>
+                  )}
+                  </div>
+
+
+            </div>
+
+{/********** SIDE BAR *************/}
+                <div id="mySidenav" className="sidenav">
+                  <a className="closebtn" onClick={this.closeNav.bind(this)}> &#9776;</a>
+                  <div id="orderheader">
+
+                  </div>
+
+
+                  <div id="side-order">
+
+                    <div id="alt-message" style={{display: altdisplay}}>
+                    Add items to your cart...
+                    </div>
+
+                  <div>
+                    {/* <div className='inorder'> */}
+
+                        {/* <div id='ordervis' style={{display: this.state.orderdisplay}}> */}
+<div>
+
+                                <Typography variant="title" id="tableTitle" style={{position: 'center', display: 'flex', justifyContent: 'center'}}>
+                                  My Order
+                                </Typography>
+
+
+<table className = "side-order-table">
+  <tbody>
+  <tr className = "side-order-table-toprow">
+    <td className = "side-order-table-borderbottom">
+        Title
+    </td>
+    <td className = "side-order-table-borderbottom">
+        Quantity
+    </td>
+    <td className = "side-order-table-borderbottom">
+      Price
+    </td>
+    <td className = "side-order-table-borderbottom">
+    </td>
+  </tr>
+
+  {this.state.myorder.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((element,index)=>
+
+       <tr key={index}>
+        <td>  {element.title} <br/> {element.artist}</td>
+  <td> {1}</td>
+    <td> ${parseInt(element.price).toFixed(2)}</td>
+      <td> <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
+      {/* {console.log(this.state.open)} */}
+      <Dialog
+        open={this.state.open[index]}
+        onClose={this.handleClose.bind(this,element,index)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{<Icon>delete</Icon>}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Remove {element.title} from order?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.handleClose.bind(this,element,index)} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={this.removeItem.bind(this, element, index)} color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog></td>
+
+      </tr>
+  )}
+</tbody>
+    </table>
 
 
 
@@ -690,7 +600,6 @@ testset
 
 
 
-          </TableCell>
 
 
 
@@ -698,58 +607,114 @@ testset
 
 
 
-          </TableRow>
+
+
+                <TableFooter>
+
+                <TableRow>
+                <TableCell component="th" scope="row" colSpan={2}>
+                Total:
+                </TableCell>
+                <TableCell numeric colSpan={1} className="quantitycell">${this.getTotalPrice()}</TableCell>
+                <TableCell numeric colSpan={1} className="quantitycell"></TableCell>
+                </TableRow>
+                <Button onClick={this.clearcart.bind(this)}>clear order</Button>
+
+
+                <TableRow>
+                <TablePagination
+                colSpan={3}
+                count={this.state.myorder.length}
+                rowsPerPage={this.state.rowsPerPage}
+                page={this.state.page}
+                onChangePage={this.handleChangePage}
+                onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                // ActionsComponent={this.TablePaginationActionsWrapped}
+                />
+                {/* {console.log(this.state.rowsPerPage)} */}
+                </TableRow>
+                </TableFooter>
+
+
+                    {/* </div> */}
+
+                    </div>
+
+                  {/* </div> */}
+                {/* //ORDER above */}
+
+                  {/* END OF ADD ITEMS TO CART */}
+                </div>
+
+              </div>
+                </div>
+
+
+        </div>
 
 
 
 
 
-        //
-        // element.price
-
-      )}
 
 
-</TableBody>
-<TableFooter>
-
-<TableRow>
-<TableCell component="th" scope="row" colSpan={2}>
-  Total:
-</TableCell>
-<TableCell numeric colSpan={1} className="quantitycell">${this.getTotalPrice()}</TableCell>
-<TableCell numeric colSpan={1} className="quantitycell"></TableCell>
-</TableRow>
-<Button onClick={this.clearcart.bind(this)}>clear order</Button>
+        <div className="top-search-box">
 
 
-<TableRow>
-<TablePagination
-  colSpan={3}
-  count={this.state.myorder.length}
-  rowsPerPage={this.state.rowsPerPage}
-  page={this.state.page}
-  onChangePage={this.handleChangePage}
-  onChangeRowsPerPage={this.handleChangeRowsPerPage}
-  // ActionsComponent={this.TablePaginationActionsWrapped}
-/>
-{/* {console.log(this.state.rowsPerPage)} */}
-</TableRow>
-</TableFooter>
-      </Table>
-      </Card>
-
-</div>
-</div>
 
 
+        <TextField
+                id="search-field"
+                label="Search"
+                style={{width: '200px', fontSize: '10px'}}
+                value={this.state.search}
+                onChange={this.SearchEvent.bind(this)}
+                onKeyPress={(ev) => {
+                  // console.log(`Pressed keyCode ${ev.key}`);
+                  if (ev.key === 'Enter') {
+                    this.catchReturn()
+                    ev.preventDefault();
+                  }}}
+                margin="normal"
+              />
+
+
+
+
+              <div className="searchbutton" onClick={this.catchReturn.bind(this)}>
+                <Icon style={{paddingRight: '6px', color: 'black'}}>search</Icon>
+              </div>
+              </div>
+        {/* <input type="text" placeholder="Search Vinyl" value={this.state.search} onChange={this.SearchEvent.bind(this)}/> */}
+
+
+
+
+
+
+{/* ORDER BUTTON  */}
+          {/* <div className="orderbutton" onClick={this.toggleOrder.bind(this)}><Button variant="contained" color="primary"><Icon style={{padding: '0px'}}>shopping_cart</Icon>
+          <div>Total: ${this.getTotalPrice()}</div>
+        </Button> */}
+            {/* <div className="ordertext">my order
+      </div> */}
+          {/* </div> */}
+{/* ORDER BUTTON END */}
+
+
+
+
+
+
+
+        </div>
+
+
+        {/* <input type="text" value={this.state.search} onChange={this.SearchEvent.bind(this)}/> */}
+      </div>
     );
   }
 }
 
-Home.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
 
-export default withAuth(Home);
+export default withAuth(myFootable);

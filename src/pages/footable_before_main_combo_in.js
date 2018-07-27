@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
-import {TextField, Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
-import CustomPaginationActionsTable from '../components/Table.js';
+
+// import {TextField, Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
+import {TextField, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
+
+
 import TablePaginationActions from '../components/TablePaginationActions.js'
 import { withStyles } from '@material-ui/core/styles';
-import AlertDialog from '../components/dialog';
-import jQuery from 'jquery';
-import ReactDOM from 'react-dom';
+
 
 
 //****************************************************************************************************************
 
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
+// const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
 const actionsStyles = theme => ({
   root: {
@@ -24,7 +25,7 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
   TablePaginationActions,
 );
 const BASE = 'http://localhost:3000';
-const cart = localStorage.getItem( 'myorder' )
+// const cart = localStorage.getItem( 'myorder' )
 
 
 //****************************************************************************************************************
@@ -93,7 +94,7 @@ let myorder = []
 getInitialState() {
     var myorder = localStorage.getItem( 'myorder' );
     // console.log(myorder);
-    if(myorder == 'undefined'){
+    if(myorder ==='undefined'){
       myorder = [];
       console.log('here');
     } else{
