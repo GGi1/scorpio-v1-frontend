@@ -10,11 +10,7 @@
 
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 60px;
 
-}
 
 body{
   background-color: #fafafa;
@@ -82,16 +78,26 @@ background-color: initial; */
   background-size: cover;
   color: white;
 }
+
+.App-logo{
+  animation: App-logo-spin infinite 20s linear;
+  height: 22px;
+  position: absolute;
+  left: 165px;
+}
+
 .scorpio{
-  font-size: 34px;
+  font-size: 58px;
   color: #202020;
   /* color: #fafafa; */
   font-weight:bold;
   background: -webkit-linear-gradient(#444, #000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-
+  font-family: "Papyrus", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: 'Wendy One', sans-serif;
+  /* margin-top: -10px; */
+  margin-bottom: -8px;
 
   background-color: #666666;
       -webkit-background-clip: text;
@@ -101,17 +107,52 @@ background-color: initial; */
       text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
 }
 
-.mydrawer{
-  width: 800px;
-}
 
-.drawerPaper{
-  width: 800px;
-  background-color: red;
-}
 .since{
   font-size: 18px;
   color: #202020;
+  margin-left: 60px;
+  /* background-color: white; */
+  border-radius: 1px;
+  background: -webkit-linear-gradient(#555, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  background-color: #666666;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+}
+
+.scorpio2{
+  font-size: 58px;
+  color: #202020;
+  /* color: #fafafa; */
+  font-weight:bold;
+  background: -webkit-linear-gradient(#444, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Papyrus", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: 'Wendy One', sans-serif;
+  font-family: 'Bangers', cursive;
+  /* margin-top: -10px; */
+  margin-bottom: -8px;
+
+  background-color: #666666;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+}
+
+
+.since2{
+  font-size: 18px;
+  color: #202020;
+  margin-left: 60px;
   /* background-color: white; */
   border-radius: 1px;
   background: -webkit-linear-gradient(#555, #000);
@@ -120,6 +161,29 @@ background-color: initial; */
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
 
 }
+.mydrawer{
+  width: 800px;
+}
+
+.drawerPaper{
+  width: 800px;
+  background-color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .bigbox{
