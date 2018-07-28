@@ -20,12 +20,13 @@ body{
 
 .App-header {
 
-  height: 74px;
+  height: 79px;
   padding: 5px;
   color: grey;
   display: flex;
   margin-bottom: 30px;
   position: fixed;
+  top: 0;
   background-color:rgb(255,255,255,.99);
   background-color: #cacaca;
   /* background-color: #202020; */
@@ -326,7 +327,7 @@ justify-content: center; */
   /* border-top: .5px black solid;
   border-bottom: .5px black dashed; */
   margin-bottom: 18px;
-  margin-top: 60px;
+  margin-top: 79px;
   padding: 30px;
   color: #222;
   color:white;
@@ -539,7 +540,7 @@ text-shadow: -10px -10px 0px rgba(0,0,0,0.67),
 
 #main {
     transition: .2s;
-    padding: 16px;
+    /* padding: 16px; */
 }
 
 #main:hover{
