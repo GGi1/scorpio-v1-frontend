@@ -360,6 +360,29 @@ text-shadow: -10px -10px 0px rgba(0,0,0,0.67),
 z-index: 0;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
 }
+
+
+.banner-thin{
+  display: flex;
+  color: white;
+  justify-content: space-around;
+  align-content: center;
+  text-align: center;
+  margin-top: 90px;
+  padding: 10px;
+  background: #0f0c29;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  z-index: 0;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+}
+
+.show-order-summary{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
 .inorder{
 
   /* width: 100%; */
@@ -556,12 +579,14 @@ z-index: 0;
     
 }
 .checkout-body{
-  margin-top: 90px;
-  padding: 20px;
+  /* margin-top: 90px; */
+  /* padding: 20px;
+  padding-top: 0px; */
 }
 
 .checkout-body .checkout-card{
-  height: 100vh;
+  /* height: 100vh; */
+  padding: 20px;
 }
 
 #main:hover{

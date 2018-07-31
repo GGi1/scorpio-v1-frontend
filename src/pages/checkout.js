@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
 import {TextField, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
 
+import {Elements, StripeProvider} from 'react-stripe-elements';
+import CheckoutForm from '../components/CheckoutForm';
+
 
 class Checkout extends Component {
   constructor(props){
@@ -68,16 +71,29 @@ class Checkout extends Component {
                     )
                   }
 
+                  showOrder(){
+
+                  }
+
       render(){
         return (
           <div>
            
-              <div className='checkout-body'>    
+              
+
+              <div className='banner-thin'> 
+                <div className='show-order-summary' onClick={this.showOrder} >
+                    <Icon>shopping_cart</Icon>   &nbsp; Show order summary <Icon>arrow_drop_down</Icon> </div>
+              
+                <div className='total-price-banner'> ${this.getTotalPrice()}</div>
+                </div>
+              <div className='checkout-body'>   
               <Card className='checkout-card'>
 My Order
 
 
 <table>
+
 {this.state.myorder.map((element,index)=>
 
     <tr key={index}>
@@ -113,7 +129,22 @@ My Order
 </table>
 </Card>
             </div>
-          
+
+
+
+            <StripeProvider apiKey="pk_test_LwL4RUtinpP3PXzYirX2jNfR">
+        <div className="example">
+          <h1>React Stripe Elements Example</h1>
+          <Elements>
+            <CheckoutForm />
+          </Elements>
+        </div>
+      </StripeProvider>
+
+
+
+
+
           </div>
         )
       }
