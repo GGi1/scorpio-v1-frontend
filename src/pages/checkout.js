@@ -135,22 +135,24 @@ My Order
 )}
 </table>
 </Card>
-            </div>
+            
 
 
-
+<div className='paywithcard'>
+<Card style={{padding: '20px', width: '480px'}}>
             <StripeProvider apiKey="pk_test_LwL4RUtinpP3PXzYirX2jNfR">
         <div className="example">
-          <h1>React Stripe Elements Example</h1>
+          <h3>Pay with Card</h3>
           <Elements>
-            <CheckoutForm />
+            <CheckoutForm/>
           </Elements>
         </div>
       </StripeProvider>
+      </Card>
+</div>
 
 
-
-
+</div>
 
           </div>
         )
