@@ -9,6 +9,7 @@ import Main from '../pages/main';
 import Exclusives from '../pages/exclusives';
 import myFootable from '../pages/footable';
 import Logos from '../pages/logos';
+import Checkout from '../pages/checkout';
 // import DataTable from '../components/datatable';
 
 
@@ -27,6 +28,7 @@ class App extends Component {
           <Route exact path ="/exclusives" component={Exclusives} />
           <Route exact path ="/footable" component={myFootable} />
           <Route exact path ="/logos" component={Logos} />
+          <Route exact path ="/checkout" component={Checkout} />
           {/* <Route exact path ="/datatable" component={DataTable} /> */}
         </Switch>
         </Router>

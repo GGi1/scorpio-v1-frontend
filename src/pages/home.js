@@ -53,7 +53,7 @@ class myFootable extends Component {
 
       }
 
-      this.myTablePaginationActions = new TablePaginationActions()
+      // this.myTablePaginationActions = new TablePaginationActions()
 
   }
 
@@ -330,6 +330,14 @@ handleChange(event, element, index){
         console.log(index)
     // this.setState({ [event.target.name]: event.target.value });
   };
+
+
+  gotocheckout(){
+    this.props.history.push({
+      pathname: '/checkout',
+      state: {myorder: this.state.myorder}
+})
+  }
 
 render() {
 
@@ -618,8 +626,10 @@ if(this.state.orderdisplay === "none"){
                 <TableCell numeric colSpan={1} className="quantitycell"></TableCell>
                 </TableRow>
                 <Button onClick={this.clearcart.bind(this)}>clear order</Button>
-
-
+                <Button href="/checkout"
+          >Checkout</Button>
+                 <Button onClick={this.gotocheckout.bind(this)}
+          >Checkout</Button>
                 <TableRow>
                 <TablePagination
                 colSpan={3}

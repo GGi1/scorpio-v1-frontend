@@ -9,7 +9,7 @@ class Logos extends Component {
     
       }
     }
-s
+
 
       render(){
         return (
@@ -59,7 +59,7 @@ s
 
 {/* <img src={logo} className="App-logo" alt="logo" style={{left: '120px'}}/> */}
 <div className="logo-title">
-  <div className="scorpio" style={{marginBottom: '30px', fontFamily: "'Akronim', cursive", fontSize: '100px'}}>scorpio</div>
+  <div className="scorpio" style={{marginBottom: '30px', fontFamily: "'Akronim', cursive", fontSize: '100px'}}>Scorpio</div>
   {/* <div className="since" style={{marginTop: '-20px', marginLeft: '70px'}}>Music Distributors</div> */}
 </div>
 

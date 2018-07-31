@@ -32,7 +32,9 @@ body{
   /* background-color: #202020; */
   width: 100%;
   z-index: 1;
-  box-shadow: 2px black;
+  -webkit-box-shadow: 0px 10px 9px -4px #445490;
+-moz-box-shadow: 0px 10px 9px -4px #445490;
+box-shadow: 0px 10px 9px -4px #445490;
 
 
 background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
@@ -91,12 +93,19 @@ background-color: initial; */
   font-size: 58px;
   color: #202020;
   /* color: #fafafa; */
-  font-weight:bold;
-  background: -webkit-linear-gradient(#444, #000);
+  /* font-weight:bold; */
+  /* background: -webkit-linear-gradient(#a8c0ff, #3f2b96); */
+
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  background: linear-gradient(141deg,  #0097db 0%, #023392 68%, #0022a2 75%);
+  /* #ff0080 */
+  
+/* background: linear-gradient(140deg, #a8c0ff, #3f2b96); */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: "Papyrus", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-family: 'Wendy One', sans-serif;
+  /* font-family: 'Passion One', cursive; */ 
   /* margin-top: -10px; */
   margin-bottom: -8px;
 
@@ -112,10 +121,13 @@ background-color: initial; */
 .since{
   font-size: 18px;
   color: #202020;
-  margin-left: 60px;
+  margin-left: 85px;
+  margin-left: 85px;
   /* background-color: white; */
   border-radius: 1px;
   background: -webkit-linear-gradient(#555, #000);
+  background: linear-gradient(141deg,  #0097db 0%, #023392 68%, #0022a2 75%);
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -345,7 +357,7 @@ text-shadow: -10px -10px 0px rgba(0,0,0,0.67),
                  -20px -20px 0px rgba(0, 0, 0, 0.47),
                  -30px -30px 0px rgba(0, 0, 0, 0.17);
 
-
+z-index: 0;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
 }
 .inorder{
@@ -541,6 +553,15 @@ text-shadow: -10px -10px 0px rgba(0,0,0,0.67),
 #main {
     transition: .2s;
     /* padding: 16px; */
+    
+}
+.checkout-body{
+  margin-top: 90px;
+  padding: 20px;
+}
+
+.checkout-body .checkout-card{
+  height: 100vh;
 }
 
 #main:hover{
