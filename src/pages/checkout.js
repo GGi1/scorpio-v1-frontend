@@ -12,6 +12,7 @@ class Checkout extends Component {
       this.state={
         open: [],
         myorder: [],
+        display_order: 'none',
       }
     }
 
@@ -72,7 +73,13 @@ class Checkout extends Component {
                   }
 
                   showOrder(){
-
+                    let display =''
+                    let {display_order} = this.state
+                    console.log(display_order)
+                    if(display_order == 'none'){
+                        display = 'flex'
+                    } else display = 'none'
+                    this.setState({display_order: display})
                   }
 
       render(){
@@ -82,13 +89,13 @@ class Checkout extends Component {
               
 
               <div className='banner-thin'> 
-                <div className='show-order-summary' onClick={this.showOrder} >
+                <div className='show-order-summary' onClick={this.showOrder.bind(this)} >
                     <Icon>shopping_cart</Icon>   &nbsp; Show order summary <Icon>arrow_drop_down</Icon> </div>
               
                 <div className='total-price-banner'> ${this.getTotalPrice()}</div>
                 </div>
               <div className='checkout-body'>   
-              <Card className='checkout-card'>
+              <Card className='checkout-card' style={{display: this.state.display_order}}>
 My Order
 
 
