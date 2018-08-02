@@ -3,8 +3,8 @@ import withAuth from '../services/withAuth';
 import SearchBox from '../components/Searchbox'
 
 // import {TextField, Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
-import {TextField, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
-
+import {ButtonBase, TextField, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
+import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 
 import TablePaginationActions from '../components/TablePaginationActions.js'
 
@@ -388,9 +388,9 @@ if(this.state.orderdisplay === "none"){
       <div>
         <div>
 
-
+ {/* <ButtonBase> */}
             <span id="hamburger" onClick={this.openNav.bind(this)}>&#9776;</span>
-
+            {/* </ButtonBase> */}
 
               <div id="main">
               {/* <SearchBox/> */}
@@ -414,10 +414,15 @@ if(this.state.orderdisplay === "none"){
                 margin="normal"
               />
               {/* <button type="submit">Search</button> */}
+            <ButtonBase>
               <div className="searchbutton2" onClick={this.catchReturn.bind(this)}>
+   
               Search
                 {/* <Icon style={{fontSize: '50px', paddingRight: '6px', color: 'black'}}>search</Icon> */}
+               
               </div>
+              </ButtonBase>
+              
 
               </div>
               </div>
@@ -430,7 +435,7 @@ if(this.state.orderdisplay === "none"){
 
 
                 {/* <div className = "banner"><b>EXCLUSIVES</b></div> */}
-                <div className = "banner2"><b>EXCLUSIVES</b></div>
+                {/* <div className = "banner2"><b>EXCLUSIVES</b></div> */}
                
 
         {/*
