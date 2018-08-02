@@ -4,6 +4,7 @@ import '../css/App.css';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import Login from './Login';
 import Logo from '../components/logo';
+import {ButtonBase} from '@material-ui/core'
 // import withAuth from '../serices/withAuth'
 export default class Navbar extends Component {
 
@@ -22,12 +23,14 @@ render(){
 
 
 <a href='/home'>
+
 <div className="logo-title">
   <div className="scorpio" >scorpio</div>
   {Logo}
-  <div className="since" style={{marginTop: '-10px', fontFamily: "'Passion One', cursive"}}>music distributors</div>
+  <div className="since">music    &nbsp; distributors</div>
 </div>
 </a>
+
     </header>
     </div>
 

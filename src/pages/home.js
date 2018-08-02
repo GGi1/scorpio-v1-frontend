@@ -389,7 +389,29 @@ if(this.state.orderdisplay === "none"){
         <div>
 
  {/* <ButtonBase> */}
-            <span id="hamburger" onClick={this.openNav.bind(this)}>&#9776;</span>
+
+ <div id='navbuttons'>
+ {/* <div>  
+Button 1
+</div> */}
+<div>
+<span id='hamburger' onClick={this.openNav.bind(this)}>
+  <ButtonBase>
+ <Icon style={{fontSize: '30px'}}>shopping_cart</Icon> 
+</ButtonBase>
+<p>${this.getTotalPrice()}</p></span>
+</div>
+
+<div>  
+<ButtonBase>
+<Icon style={{fontSize: '30px'}}>exit_to_app</Icon>
+</ButtonBase>
+<p> Log Off</p>
+</div>
+
+ </div>
+ 
+            {/* <span id="hamburger" onClick={this.openNav.bind(this)}> <Icon style={{fontSize: '30px'}}>shopping_cart</Icon> ${this.getTotalPrice()}</span> */}
             {/* </ButtonBase> */}
 
               <div id="main">
@@ -667,7 +689,7 @@ if(this.state.orderdisplay === "none"){
                 <TableCell numeric colSpan={1} className="quantitycell">${this.getTotalPrice()}</TableCell>
                 <TableCell numeric colSpan={1} className="quantitycell"></TableCell>
                 </TableRow>
-                <Button onClick={this.clearcart.bind(this)}>clear order</Button>
+                {/* <Button onClick={this.clearcart.bind(this)}>clear order</Button> */}
                 <Button href="/checkout"
           >Checkout</Button>
                  <Button onClick={this.gotocheckout.bind(this)}
