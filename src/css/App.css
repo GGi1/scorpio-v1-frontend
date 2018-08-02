@@ -628,6 +628,7 @@ margin-top: 0px;
 }
 
 #main {
+  margin-top: 100px;
     transition: .2s;
     /* padding: 16px; */
     
@@ -851,8 +852,9 @@ background-color: rgba(32,32,32, 0.1);
 }
 
 
-.button_box2 {
-  margin:100px auto;
+#button_box2 {
+  margin-top: 80px;
+  padding: 18px;
   display:flex;
   justify-content: center;
   width: 100%;

@@ -315,12 +315,16 @@ openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("main").style.marginRight = "250px";
     document.getElementById("hamburger").style.display = "none";
+    document.getElementById("button_box2").style.display = "none";
+    
 }
 
 closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginRight= "0";
     document.getElementById("hamburger").style.display = "";
+    document.getElementById("button_box2").style.display = "";
+    
 }
 
 
@@ -392,7 +396,10 @@ if(this.state.orderdisplay === "none"){
 
  <div id='navbuttons'>
  {/* <div>  
-Button 1
+<ButtonBase>
+<Icon style={{fontSize: '30px'}}>settings</Icon>
+</ButtonBase>
+<p> Settings</p>
 </div> */}
 <div>
 <span id='hamburger' onClick={this.openNav.bind(this)}>
@@ -418,7 +425,7 @@ Button 1
               {/* <SearchBox/> */}
 
 
-<div class="button_box2">
+<span id="button_box2">
 <div className="form-wrapper-2 cf">
         <input
                 id="search-field"
@@ -447,7 +454,7 @@ Button 1
               
 
               </div>
-              </div>
+              </span>
 
 
 
