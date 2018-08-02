@@ -21,12 +21,13 @@ render(){
 
 
 
-
+<a href='/home'>
 <div className="logo-title">
   <div className="scorpio" >scorpio</div>
   {Logo}
   <div className="since" style={{marginTop: '-10px', fontFamily: "'Passion One', cursive"}}>music distributors</div>
 </div>
+</a>
     </header>
     </div>
 

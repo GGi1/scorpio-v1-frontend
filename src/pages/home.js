@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
+import SearchBox from '../components/Searchbox'
 
 // import {TextField, Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
 import {TextField, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
@@ -392,9 +393,45 @@ if(this.state.orderdisplay === "none"){
 
 
               <div id="main">
+              {/* <SearchBox/> */}
+
+
+<div class="button_box2">
+<div className="form-wrapper-2 cf">
+        <input
+                id="search-field"
+                label="Search"
+                placeholder="Search by artist, title, etc..."
+                // style={{width: '200px', fontSize: '10px'}}
+                value={this.state.search}
+                onChange={this.SearchEvent.bind(this)}
+                onKeyPress={(ev) => {
+                  // console.log(`Pressed keyCode ${ev.key}`);
+                  if (ev.key === 'Enter') {
+                    this.catchReturn()
+                    ev.preventDefault();
+                  }}}
+                margin="normal"
+              />
+              {/* <button type="submit">Search</button> */}
+              <div className="searchbutton2" onClick={this.catchReturn.bind(this)}>
+              Search
+                {/* <Icon style={{fontSize: '50px', paddingRight: '6px', color: 'black'}}>search</Icon> */}
+              </div>
+
+              </div>
+              </div>
+
+
+
+
+              
+
+
 
                 {/* <div className = "banner"><b>EXCLUSIVES</b></div> */}
                 <div className = "banner2"><b>EXCLUSIVES</b></div>
+               
 
         {/*
                       IF I WANT TO HAVE A TABLE AND REMOVE CERTAIN COLUMNS AT CERTAIN SIZE WINDOWS/MEDIA: */}
@@ -667,7 +704,7 @@ if(this.state.orderdisplay === "none"){
 
 
 
-        <div className="top-search-box">
+        {/* <div className="top-search-box">
 
 
 
@@ -693,7 +730,7 @@ if(this.state.orderdisplay === "none"){
               <div className="searchbutton" onClick={this.catchReturn.bind(this)}>
                 <Icon style={{paddingRight: '6px', color: 'black'}}>search</Icon>
               </div>
-              </div>
+              </div> */}
         {/* <input type="text" placeholder="Search Vinyl" value={this.state.search} onChange={this.SearchEvent.bind(this)}/> */}
 
 
