@@ -13,7 +13,7 @@ render(){
     <div>
     <header className="App-header">
 
-      <img src={logo} className="App-logo" alt="logo" />
+      {/* <img src={logo} className="App-logo" alt="logo" /> */}
 
       {/* <div className="logo-title">
         <div className="scorpio">scorpio</div>
@@ -24,11 +24,11 @@ render(){
 
 <a href='/home'>
 
-<div className="logo-title">
+{/* <div className="logo-title">
   <div className="scorpio" >scorpio</div>
   {Logo}
   <div className="since">music    &nbsp; distributors</div>
-</div>
+</div> */}
 </a>
 
     </header>

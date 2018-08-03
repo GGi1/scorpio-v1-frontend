@@ -212,7 +212,8 @@ removeItem(element, index){
 }
 
 handleClickOpen = (element,index) => {
-let {open} = this.state
+// let {open} = this.state
+let open = []
 open[index] = true
   this.setState({ open: open});
 };
@@ -423,7 +424,8 @@ if(this.state.orderdisplay === "none"){
 
               <div id="main">
               {/* <SearchBox/> */}
-
+              <div className="elegantshadow"> Scorpio Music
+</div>
 
 <span id="button_box2">
 <div className="form-wrapper-2 cf">
@@ -465,6 +467,8 @@ if(this.state.orderdisplay === "none"){
 
                 {/* <div className = "banner"><b>EXCLUSIVES</b></div> */}
                 {/* <div className = "banner2"><b>EXCLUSIVES</b></div> */}
+
+
                
 
         {/*
