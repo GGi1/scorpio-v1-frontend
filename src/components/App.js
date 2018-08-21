@@ -11,7 +11,8 @@ import myFootable from '../pages/footable';
 import Logos from '../pages/logos';
 import Checkout from '../pages/checkout';
 // import DataTable from '../components/datatable';
-
+import {StripeProvider} from 'react-stripe-elements';
+import MyStoreCheckout from './MyStoreCheckout';
 
 // import withAuth from '../serices/withAuth'
 class App extends Component {
@@ -19,6 +20,9 @@ class App extends Component {
     return (
       <div>
         <Navbar/>
+        <StripeProvider apiKey="pk_test_12345">
+      <MyStoreCheckout />
+    </StripeProvider>
         <Router>
         <Switch>
           <Route exact path ="/login" component={Login} />

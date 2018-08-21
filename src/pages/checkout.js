@@ -77,14 +77,11 @@ class Checkout extends Component {
                   getTotalQuantity(){
                     let {myorder} = this.state
                     let quantity = 0
-                    
+                  
                     myorder.map((element)=>{
-              
                     quantity = element.quantity + quantity
                     }
                   )
-                  // console.log("price:");
-                  // console.log(price);
                   return (
                   quantity
                     )
@@ -111,7 +108,7 @@ class Checkout extends Component {
                 <div className='show-order-summary' onClick={this.showOrder.bind(this)} >
                     <Icon>shopping_cart</Icon>   &nbsp; Show order summary <Icon>arrow_drop_down</Icon> </div>
               
-                <div className='total-price-banner'> {this.getTotalQuantity()} ${this.getTotalPrice()}</div>
+                <div className='total-price-banner'>  ${this.getTotalPrice()}</div>
                 </div>
               <div className='checkout-body'>   
               <Card className='checkout-card' style={{display: this.state.display_order}}>
