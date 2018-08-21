@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import withAuth from '../services/withAuth';
-import SearchBox from '../components/Searchbox'
+// import SearchBox from '../components/Searchbox'
 
 // import {TextField, Select, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, Table, TableHead,TableBody, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
 import {ButtonBase, TextField, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Card, Button, Icon, TableCell, TableFooter, TablePagination, TableRow} from '@material-ui/core'
-import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
+// import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 
-import TablePaginationActions from '../components/TablePaginationActions.js'
+// import TablePaginationActions from '../components/TablePaginationActions.js'
 
 // import AlertDialog from '../components/dialog';
 // import jQuery from 'jquery';
@@ -178,6 +178,14 @@ handleChangePage = (event, page) => {
   this.setState({ page });
 };
 
+handleChangeQuantity(element, event) {
+  
+  console.log(element)
+  
+  console.log(event.target.value)
+  // this.setState({value: event.target.value});
+}
+
 // toggleOrder(){
 //   let myorderpage
 //
@@ -219,11 +227,11 @@ open[index] = true
 };
 
 
-enterquantity = (element,index) => {
-let {openQuantitySelect} = this.state
-openQuantitySelect[index] = true
-  this.setState({ openQuantitySelect: openQuantitySelect});
-};
+// enterquantity = (element,index) => {
+// let {openQuantitySelect} = this.state
+// openQuantitySelect[index] = true
+//   this.setState({ openQuantitySelect: openQuantitySelect});
+// };
 
 handleClose = (element,index) => {
   let {open} = this.state
@@ -389,6 +397,8 @@ if(this.state.orderdisplay === "none"){
   console.log(altdisplay)
 }
 
+console.log(this.state.myorder)
+
     return (
       <div>
         <div>
@@ -424,8 +434,8 @@ if(this.state.orderdisplay === "none"){
 
               <div id="main">
               {/* <SearchBox/> */}
-              <div className="elegantshadow"> Scorpio Music
-</div>
+              {/* <div className="elegantshadow"> Scorpio Music
+</div> */}
 
 <span id="button_box2">
 <div className="form-wrapper-2 cf">
@@ -503,8 +513,11 @@ if(this.state.orderdisplay === "none"){
                         <div className="artist">{element.artist}</div>
                         <div className="title">${parseInt(element.price).toFixed(2)}</div>
                         <div className="quantityline">
-                        Quantity: <input type="number" defaultValue={1} min={1} style={{width: "30px"}}/>
+                        {/* Quantity: <input type="number" defaultValue={1} value={element.quantity} onChange ={this.handleChangeQuantity.bind(this, element)} min={1} style={{width: "30px"}}/> */}
+                        Quantity: <input type="number" defaultValue={1} value={element.quantity} onChange={console.log("test")} min={1} style={{width: "30px"}}/>
+
 </div>
+
                         {/* <Select
                                     value={this.state.age}
                                     onChange={this.handleChange.bind(this, element, index)}
@@ -551,7 +564,7 @@ if(this.state.orderdisplay === "none"){
 
                         <div className="cartbutton">
 
-                           <Button style={{background: 'linear-gradient(0deg, #fc7a1a 0%, #fcb713 100%)'}} onClick = {this.addToOrder.bind(this, element)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
+                           <Button style={{background: 'linear-gradient(0deg, #fc7a1a 0%, #fcb713 100%)'}} onClick={this.addToOrder.bind(this, element)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
 
                         {/* <Button style={{backgroundColor: '#0b05ff82'}} onClick={this.enterquantity.bind(this,element,index)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon> */}
 

@@ -107,6 +107,8 @@ background-color: initial; */
   -webkit-text-fill-color: transparent; */
   font-family: "Papyrus", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-family: 'Wendy One', sans-serif;
+  font-family: 'Lobster', sans-serif;
+
   /* font-family: 'Passion One', cursive; */ 
   /* margin-top: -10px; */
   margin-bottom: -8px;
@@ -123,8 +125,8 @@ background-color: initial; */
 .since{
   font-size: 14px;
   color: #202020;
-  margin-left: 45px;
-  margin-left: 83px;
+  margin-left: 61px;
+  /* margin-left: 83px; */
   margin-top: -18px;
   /* background-color: white; */
   border-radius: 1px;

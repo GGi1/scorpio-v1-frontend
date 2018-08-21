@@ -24,11 +24,11 @@ render(){
 
 <a href='/home'>
 
-{/* <div className="logo-title">
-  <div className="scorpio" >scorpio</div>
+<div className="logo-title">
+  <div className="scorpio" >Scorpio</div>
   {Logo}
   <div className="since">music    &nbsp; distributors</div>
-</div> */}
+</div>
 </a>
 
     </header>
