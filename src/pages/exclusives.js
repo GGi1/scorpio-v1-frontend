@@ -5,10 +5,10 @@ import TablePaginationActions from '../components/TablePaginationActions.js'
 import { withStyles } from '@material-ui/core/styles';
 // import AlertDialog from '../components/dialog';
 
-console.log(TablePaginationActions);
+// console.log(TablePaginationActions);
 
 
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
+// const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
 const actionsStyles = theme => ({
   root: {
@@ -17,11 +17,11 @@ const actionsStyles = theme => ({
     marginLeft: theme.spacing.unit * 2.5,
   },
 });
-const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: true })(
-  TablePaginationActions,
-);
+// const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: true })(
+//   TablePaginationActions,
+// );
 const BASE = 'http://localhost:3000';
-const cart = localStorage.getItem( 'myorder' )
+// const cart = localStorage.getItem( 'myorder' )
 
 class Exclusives extends Component {
     constructor(props){

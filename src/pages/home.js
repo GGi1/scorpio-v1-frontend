@@ -24,6 +24,7 @@ const BASE = 'https://scorpio-music-backend-api.herokuapp.com';
 // const cart = localStorage.getItem( 'myorder' )
 let bottomhit=0
 
+
 //****************************************************************************************************************
 
 class myFootable extends Component {
@@ -82,7 +83,7 @@ let myorder = []
 
           // this.props.history.push('/log', nodata.true)
         } else{
-          console.log(myorder[0]);
+          // console.log(myorder[0]);
         this.setState({
           allvinyl: APIinfo, myorder: myorder, filteredItemsOnReturn: APIinfo
         }
@@ -134,13 +135,26 @@ getTotalPrice(){
   let {myorder} = this.state
   let price = 0
   myorder.map((element)=>{
-  price = parseFloat(element.price) + price
+  price = parseFloat(element.price*element.quantity) + price
   }
 )
 // console.log("price:");
 // console.log(price);
 return (
 price.toFixed(2)
+  )
+}
+
+getTotalQuantity(){
+  let {myorder} = this.state
+  let quantity = 0
+
+  myorder.map((element)=>{
+  quantity = parseInt(element.quantity) + quantity
+  }
+)
+return (
+quantity
   )
 }
 
@@ -179,11 +193,15 @@ handleChangePage = (event, page) => {
 };
 
 handleChangeQuantity(element, event) {
-  
   console.log(element)
-  
+  console.log(element.id)
   console.log(event.target.value)
-  // this.setState({value: event.target.value});
+  console.log(event.target)
+  //find specific element
+  this.state.filteredItemsOnReturn[element.id -1].quantity = event.target.value;
+  console.log(this.state.filteredItemsOnReturn[element.id -1].quantity)
+   console.log(this.state.filteredItemsOnReturn[element.id -1])
+  // this.setState({quantity: event.target.value});
 }
 
 // toggleOrder(){
@@ -199,7 +217,7 @@ handleChangeQuantity(element, event) {
 // }
 
 
-addToOrder(element){
+addToOrder(element, quantity){
   let {myorder} = this.state
   myorder.push(element)
   this.setState({myorder: myorder, orderdisplay: ''}, this.setmyorder)
@@ -353,6 +371,10 @@ handleChange(event, element, index){
 })
   }
 
+  test_function(){
+    console.log('test function running')
+  }
+
 render() {
 
     window.onscroll = function(ev) {
@@ -392,12 +414,12 @@ render() {
 // console.log(TablePaginationActions);
 let altdisplay = "none";
 if(this.state.orderdisplay === "none"){
-  console.log("this is running")
+  // console.log("this is running")
   altdisplay = ""
-  console.log(altdisplay)
+  // console.log(altdisplay)
 }
 
-console.log(this.state.myorder)
+
 
     return (
       <div>
@@ -502,6 +524,7 @@ console.log(this.state.myorder)
 
 
                     {this.state.filteredItemsOnReturn.slice(0, 35*(bottomhit+1)).map((element,index)  =>
+                   
                       <Card className='itemcard'>
 {/* TO GET PHOTO NAME UNCOMMENT NEXT LINE: */}
                    {/* {  console.log(`url(/assets/images/${element.title.replace(/[^a-zA-Z0-9 ]/g, "").substr(0,5).split(" ").join("_")}${element.artist.replace(/[^a-zA-Z0-9]/g, "").split(' ').join('_')}.jpg`)  } */}
@@ -511,10 +534,11 @@ console.log(this.state.myorder)
                           <table>
                         <div className="title">{element.title}</div>
                         <div className="artist">{element.artist}</div>
-                        <div className="title">${parseInt(element.price).toFixed(2)}</div>
+                        <div className="title">${parseFloat(element.price).toFixed(2)}</div>
                         <div className="quantityline">
-                        {/* Quantity: <input type="number" defaultValue={1} value={element.quantity} onChange ={this.handleChangeQuantity.bind(this, element)} min={1} style={{width: "30px"}}/> */}
-                        Quantity: <input type="number" defaultValue={1} value={element.quantity} onChange={console.log("test")} min={1} style={{width: "30px"}}/>
+                      
+                        Quantity: <input type="number" defaultValue={1} onChange={this.handleChangeQuantity.bind(this, element)} min={1} style={{width: "30px"}}/>
+                        {/* Quantity: <input type="number" defaultValue={1} value={element.quantity} onChange={console.log(element.quantity)} min={1} style={{width: "30px"}}/> */}
 
 </div>
 
@@ -564,7 +588,7 @@ console.log(this.state.myorder)
 
                         <div className="cartbutton">
 
-                           <Button style={{background: 'linear-gradient(0deg, #fc7a1a 0%, #fcb713 100%)'}} onClick={this.addToOrder.bind(this, element)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
+                           <Button style={{background: 'linear-gradient(0deg, #fc7a1a 0%, #fcb713 100%)'}} onClick={this.addToOrder.bind(this, element, element.quantity)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon>
 
                         {/* <Button style={{backgroundColor: '#0b05ff82'}} onClick={this.enterquantity.bind(this,element,index)} variant="outlined" color="black"><Icon style={{paddingRight: '6px'}}>add_shopping_cart</Icon> */}
 
@@ -653,8 +677,8 @@ console.log(this.state.myorder)
 
        <tr key={index}>
         <td>  {element.title} <br/> {element.artist}</td>
-  <td> {1}</td>
-    <td> ${parseInt(element.price).toFixed(2)}</td>
+  <td> {element.quantity}</td>
+    <td> ${parseFloat(element.price).toFixed(2)}</td>
       <td> <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
       {/* {console.log(this.state.open)} */}
       <Dialog
@@ -681,37 +705,34 @@ console.log(this.state.myorder)
 
       </tr>
   )}
+
+ 
+
+  <tr>
+    <td>
+      
+    </td>
+    <td>
+    {this.getTotalQuantity()}
+    </td>
+    <td>
+    ${this.getTotalPrice()}
+    </td>
+    </tr>
 </tbody>
     </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                 <TableFooter>
 
                 <TableRow>
-                <TableCell component="th" scope="row" colSpan={2}>
+                <TableCell>
                 Total:
                 </TableCell>
-                <TableCell numeric colSpan={1} className="quantitycell">${this.getTotalPrice()}</TableCell>
-                <TableCell numeric colSpan={1} className="quantitycell"></TableCell>
+                <TableCell numeric>{this.getTotalQuantity()}</TableCell>
+
+                <TableCell numeric>${this.getTotalPrice()}</TableCell>
+                {/* <TableCell numeric colSpan={1} className="quantitycell"></TableCell> */}
                 </TableRow>
                 {/* <Button onClick={this.clearcart.bind(this)}>clear order</Button> */}
                 <Button href="/checkout"

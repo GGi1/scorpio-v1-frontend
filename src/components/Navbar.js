@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from '../images/logo.svg';
+// import logo from '../images/logo.svg';
 import '../css/App.css';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import Login from './Login';
 import Logo from '../components/logo';
-import {ButtonBase} from '@material-ui/core'
+// import {ButtonBase} from '@material-ui/core'
 // import withAuth from '../serices/withAuth'
 export default class Navbar extends Component {
 

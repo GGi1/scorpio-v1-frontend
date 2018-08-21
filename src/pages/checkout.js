@@ -61,8 +61,10 @@ class Checkout extends Component {
                 getTotalPrice(){
                     let {myorder} = this.state
                     let price = 0
+                    
                     myorder.map((element)=>{
-                    price = parseFloat(element.price) + price
+                      console.log(element)
+                    price = parseFloat(element.price*element.quantity) + price
                     }
                   )
                   // console.log("price:");
@@ -71,6 +73,23 @@ class Checkout extends Component {
                   price.toFixed(2)
                     )
                   }
+
+                  getTotalQuantity(){
+                    let {myorder} = this.state
+                    let quantity = 0
+                    
+                    myorder.map((element)=>{
+              
+                    quantity = element.quantity + quantity
+                    }
+                  )
+                  // console.log("price:");
+                  // console.log(price);
+                  return (
+                  quantity
+                    )
+                  }
+                  
 
                   showOrder(){
                     let display =''
@@ -92,7 +111,7 @@ class Checkout extends Component {
                 <div className='show-order-summary' onClick={this.showOrder.bind(this)} >
                     <Icon>shopping_cart</Icon>   &nbsp; Show order summary <Icon>arrow_drop_down</Icon> </div>
               
-                <div className='total-price-banner'> ${this.getTotalPrice()}</div>
+                <div className='total-price-banner'> {this.getTotalQuantity()} ${this.getTotalPrice()}</div>
                 </div>
               <div className='checkout-body'>   
               <Card className='checkout-card' style={{display: this.state.display_order}}>
@@ -105,7 +124,7 @@ My Order
 
     <tr key={index}>
      <td>  {element.title} <br/> {element.artist}</td>
-<td> {1}</td>
+<td> {element.quantity}</td>
  <td> ${parseInt(element.price).toFixed(2)}</td>
    <td> <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
    {/* {console.log(this.state.open)} */}
