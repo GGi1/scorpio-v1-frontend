@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import {Button} from '@material-ui/core'
+import {StripeProvider} from 'react-stripe-elements';
 
 import {newCharge} from "../api"
 

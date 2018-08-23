@@ -4,6 +4,9 @@ import {injectStripe} from 'react-stripe-elements';
 // import AddressSection from './AddressSection';
 import CardSection from './CardSection';
 
+const BASE = 'https://scorpio-music-backend-api.herokuapp.com';
+
+
 class CheckoutForm extends React.Component {
   handleSubmit = (ev) => {
     // We don't want to let default form submission happen here, which would refresh the page.
@@ -25,12 +28,30 @@ class CheckoutForm extends React.Component {
     // this.props.stripe.createSource({type: 'card', name: 'Jenny Rosen'});
   };
 
+  submit(event) {
+    // let { charge } = this.state
+    let charge = 100
+    console.log(charge)
+       
+    return fetch(BASE+'/charges', {
+      body: "test body",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: "POST"
+    }).then(res => {
+      console.log(res)
+    })  
+    }
+
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         {/* <AddressSection /> */}
         <CardSection />
         <button>Confirm order</button>
+        <button onClick={this.submit}>Send</button>
       </form>
     );
   }

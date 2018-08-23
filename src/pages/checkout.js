@@ -106,23 +106,33 @@ class Checkout extends Component {
 
               <div className='banner-thin'> 
                 <div className='show-order-summary' onClick={this.showOrder.bind(this)} >
-                    <Icon>shopping_cart</Icon>   &nbsp; Show order summary <Icon>arrow_drop_down</Icon> </div>
+                    <Icon>shopping_cart</Icon>   &nbsp; Review Order <Icon>arrow_drop_down</Icon> </div>
               
                 <div className='total-price-banner'>  ${this.getTotalPrice()}</div>
                 </div>
               <div className='checkout-body'>   
               <Card className='checkout-card' style={{display: this.state.display_order}}>
-My Order
 
 
-<table>
 
-{this.state.myorder.map((element,index)=>
-
+<table style={{width:"100%"}}>
+<caption>My Order</caption>
+  <tr>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Price extended</th>
+  </tr>
+  <tbody>
+    {this.state.myorder.map((element,index)=>
     <tr key={index}>
-     <td>  {element.title} <br/> {element.artist}</td>
-<td> {element.quantity}</td>
- <td> ${parseInt(element.price).toFixed(2)}</td>
+     <td>  {element.title} </td>
+     <td> {element.artist}</td>
+     <td> ${parseInt(element.price).toFixed(2)}</td>
+     <td> {element.quantity}</td>
+
+ <td> ${(parseInt(element.price)*parseInt(element.quantity)).toFixed(2)}</td>
    <td> <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
    {/* {console.log(this.state.open)} */}
    <Dialog
@@ -149,6 +159,7 @@ My Order
 
    </tr>
 )}
+</tbody>
 </table>
 </Card>
             
