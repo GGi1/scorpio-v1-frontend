@@ -3,6 +3,40 @@
   outline: none;
 }
 
+caption{
+  font-size: 24px;
+}
+
+th{
+  text-align: left;
+  font-size: 18px;
+  padding: 2px;
+  text-decoration: #000;
+  border-bottom: 1.5px #111 solid;
+  /* background-color: grey; */
+
+}
+/* tfoot td{
+  border-top: 2px #111 solid;
+} */
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
 .App {
   text-align: center;
   color: #202020;
@@ -90,7 +124,7 @@ background-color: initial; */
 }
 
 .scorpio{
-  font-size: 58px;
+  font-size: 2.4em;
   /* color: #202020; */
   color: white;
   /* font-weight:bold; */

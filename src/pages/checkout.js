@@ -79,7 +79,7 @@ class Checkout extends Component {
                     let quantity = 0
                   
                     myorder.map((element)=>{
-                    quantity = element.quantity + quantity
+                    quantity = parseInt(element.quantity) + quantity
                     }
                   )
                   return (
@@ -129,10 +129,10 @@ class Checkout extends Component {
     <tr key={index}>
      <td>  {element.title} </td>
      <td> {element.artist}</td>
-     <td> ${parseInt(element.price).toFixed(2)}</td>
+     <td> ${parseFloat(element.price).toFixed(2)}</td>
      <td> {element.quantity}</td>
 
- <td> ${(parseInt(element.price)*parseInt(element.quantity)).toFixed(2)}</td>
+ <td> ${(parseFloat(element.price)*parseInt(element.quantity)).toFixed(2)}</td>
    <td> <Icon onClick={this.handleClickOpen.bind(this,element,index)}>delete</Icon>
    {/* {console.log(this.state.open)} */}
    <Dialog
@@ -160,6 +160,15 @@ class Checkout extends Component {
    </tr>
 )}
 </tbody>
+<tfoot> 
+<td></td>
+<td></td>
+<td></td>
+<td>{this.getTotalQuantity()}</td>
+<td>${this.getTotalPrice()}</td>
+
+  </tfoot>
+
 </table>
 </Card>
             
